@@ -41,10 +41,8 @@ about $484 more in 2027, nothing to fix.
 - **Advisor view:** https://files.instinct.com/whbgqjufpheo-demo-sherpas-vista-asesor
 
 ## Demo videos
-
+The video is submitted in Polievalua via a link to a drive.
 - **demo-narrado-pau.mp4** (1:08) — full walkthrough with voiceover.
-- **demo-cliente-18s.mp4** (0:18) — quick client loop.
-- **demo-asesor-rapido.mp4** (0:26) — quick advisor loop.
 
 ## How to run it
 
