@@ -1,0 +1,925 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Sherpas Advisor Workspace</title><style>.sherpas-embed{display:block;min-width:0;max-width:100%;overflow-wrap:anywhere}
+.sherpas-embed .top{height:auto;min-height:62px;padding:14px 24px;flex-wrap:wrap}
+.sherpas-embed .sh-hub{padding:30px 30px 22px;background:#fff;border-bottom:1px solid var(--line)}
+.sherpas-embed .sh-hub-head{display:flex;gap:20px;align-items:flex-start;justify-content:space-between}
+.sherpas-embed .sh-eyebrow{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--brand2);font-weight:700;margin:0 0 8px}
+.sherpas-embed .sh-hub h1{font-size:28px;line-height:1.2;letter-spacing:-.65px;margin:0 0 8px;color:var(--brand)}
+.sherpas-embed .sh-intro{margin:0;color:var(--mute)}
+.sherpas-embed .sh-session{font-size:11px;background:#eef6f5;border:1px solid #d9e9e6;padding:6px 10px;border-radius:20px;color:var(--brand);white-space:nowrap}
+.sherpas-embed .sh-search-row{margin:24px 0 16px;display:grid;grid-template-columns:1fr auto;gap:6px 18px;align-items:center}
+.sherpas-embed .sh-search-label{font-weight:650;color:var(--brand);font-size:13px;grid-column:1/-1}
+.sherpas-embed .sh-search-box{display:flex;align-items:center;border:1.5px solid #83aeb5;background:#f8fbfc;border-radius:10px;padding:5px 6px 5px 14px;gap:10px;box-shadow:0 2px 8px #0f4c5c09}
+.sherpas-embed .sh-search-box:focus-within{outline:3px solid #d0e9ed;border-color:var(--brand2)}
+.sherpas-embed .sh-search-box>span{font-size:28px;color:var(--brand2)}
+.sherpas-embed #clientSearch{width:100%;min-width:0;border:0;background:transparent;font:inherit;font-size:16px;outline:0;padding:8px 0;color:var(--ink)}
+.sherpas-embed #clearSearch{border:0;background:#edf3f5;color:var(--brand);min-height:44px}
+.sherpas-embed #searchCount{font-size:12px;color:var(--mute);white-space:nowrap}
+.sherpas-embed .sh-client-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.sherpas-embed .sh-client-card{text-align:left;display:flex;align-items:flex-start;flex-direction:column;gap:7px;border:1px solid var(--line);border-radius:12px;padding:16px;background:#fff;transition:border-color .15s,background .15s;min-width:0;position:relative}
+.sherpas-embed .sh-client-card:hover{border-color:var(--brand2);background:#f6fbfc}
+.sherpas-embed .sh-client-card.is-active{border:2px solid var(--brand2);padding:15px;background:#f0f8f9}
+.sherpas-embed .sh-avatar{width:32px;height:32px;background:#e7f0f2;color:var(--brand);border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:11px}
+.sherpas-embed .sh-card-name{font-size:14px;line-height:1.35;font-weight:700;color:var(--brand);min-height:38px}
+.sherpas-embed .sh-card-detail{font-size:12px;font-weight:600;color:var(--brand2)}
+.sherpas-embed .sh-card-type{font-size:11px;color:var(--mute);flex:1}
+.sherpas-embed .sh-card-open{font-size:11px;color:var(--brand2);font-weight:650;margin-top:4px}
+.sherpas-embed mark{background:#f6df8e;color:#14212b;border-radius:3px;padding:0 1px}
+.sherpas-embed .sh-hint{font-size:11px;margin:12px 0 0;color:var(--mute)}
+.sherpas-embed .sh-empty{padding:20px;background:#f6f8f9;border-radius:10px;color:var(--mute)}
+.sherpas-embed .layout{min-height:0;align-items:stretch}
+.sherpas-embed .side{width:260px;padding-top:26px;background:#f9fbfc}
+.sherpas-embed .main{padding:24px;min-width:0}
+.sherpas-embed .sh-path{font-size:11px;color:var(--mute);margin-bottom:20px;display:flex;flex-wrap:wrap;gap:7px}
+.sherpas-embed .sh-path span{color:#9aabb3}
+.sherpas-embed .sh-family-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+.sherpas-embed .sh-back-clients{font-size:11px;color:var(--brand2);border:0;background:#f1f7f9}
+.sherpas-embed .fam{scroll-margin-top:20px;outline:0}
+.sherpas-embed .sh-profile{font-size:12px;color:var(--mute);padding:12px 16px 0}
+.sherpas-embed .sh-status{font-size:11px;margin-left:auto;color:var(--brand2);font-weight:650}
+.sherpas-embed .sh-status.is-sent{color:var(--green)}
+.sherpas-embed .ew-head{gap:10px}
+.sherpas-embed .ew-fields textarea{min-height:340px;line-height:1.65;border-color:var(--line)}
+.sherpas-embed .ew-fields input:focus,.sherpas-embed .ew-fields textarea:focus{outline:2px solid #d0e9ed}
+.sherpas-embed .ew-actions{padding-top:8px;border-top:1px solid #eff3f5}
+.sherpas-embed .ew-actions button,.sherpas-embed .sh-gmail{min-height:44px;font-size:12px}
+.sherpas-embed .sh-gmail{display:inline-flex;align-items:center;background:var(--brand2);border-radius:8px;color:#fff;padding:8px 14px;cursor:pointer;text-decoration:none}
+.sherpas-embed #editor{margin-top:20px;border:1px solid #c5dce0;border-radius:12px;overflow:hidden;scroll-margin-top:20px}
+.sherpas-embed .editor-top{position:static;padding:14px;gap:8px;background:#f1f7f9}
+.sherpas-embed .editor-chip{border-color:#bbd7dd;background:#e5f2f4;color:var(--brand);font-size:11px}
+.sherpas-embed .client-report{padding:22px 16px 30px}
+.sherpas-embed .client-report .hhead{background:linear-gradient(120deg,#e3f1f3,#f0f6f4)}
+.sherpas-embed .client-report .hero{border-color:#c5dce0;box-shadow:0 7px 20px #0f4c5c0a}
+.sherpas-embed .client-report .bi.b1{background:var(--brand2)}
+.sherpas-embed .client-report [contenteditable=true]{outline-color:#9dbfc5}
+.sherpas-embed .client-report [contenteditable=true]:focus{outline-color:var(--brand2);background:#f3fafb;box-shadow:0 0 0 4px #e1f0f3}
+.sherpas-embed .sh-highlight{outline:3px solid #e5c364}
+.sherpas-embed .sh-muted{font-size:12px;color:var(--mute)}
+.sherpas-embed .sh-email-preview{white-space:pre-wrap;line-height:1.7}
+.sherpas-embed dialog.modal-ov{position:fixed!important;inset:0!important;max-height:85vh!important;width:calc(100% - 24px)!important;height:max-content!important;margin:auto!important;overflow:visible!important;padding:0;background:transparent}
+.sherpas-embed dialog.modal-ov .modal{width:100%;max-height:85vh;overflow:auto}
+.sherpas-embed #pmBody{max-height:55vh;overflow:auto}
+.sherpas-embed .edit-feedback{max-width:calc(100% - 24px);font-size:12px;z-index:100}
+@media(max-width:800px){.sherpas-embed .layout{display:flex;flex-direction:column}.sherpas-embed .side{width:100%;order:2;border-top:1px solid var(--line);border-right:0;padding:20px}.sherpas-embed .main{order:1;padding:18px}.sherpas-embed .sh-hub{padding:24px 20px 18px}.sherpas-embed .sh-hub-head{display:block}.sherpas-embed .sh-session{display:inline-block;margin-top:14px}.sherpas-embed .sh-client-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.sherpas-embed .sh-hub h1{font-size:25px}.sherpas-embed .sh-search-row{grid-template-columns:1fr}.sherpas-embed #searchCount{margin-top:3px}.sherpas-embed .ew-fields textarea{min-height:380px}.sherpas-embed .client-report{padding:18px 10px}.sherpas-embed .client-report .feed{padding-left:20px}.sherpas-embed .client-report .hhead{padding:16px}.sherpas-embed .client-report .hbody{padding:4px 14px 20px}}
+@media(max-width:400px){.sherpas-embed .top{padding:12px;gap:8px}.sherpas-embed .top button{font-size:11px;padding:6px 8px}.sherpas-embed .sh-hub{padding:22px 14px 16px}.sherpas-embed .sh-client-grid{gap:8px}.sherpas-embed .sh-client-card{padding:12px}.sherpas-embed .sh-client-card.is-active{padding:11px}.sherpas-embed .sh-card-name{font-size:13px}.sherpas-embed .main{padding:14px 10px}.sherpas-embed .fam{padding:12px 10px}.sherpas-embed .ew-fields{padding:10px}.sherpas-embed .ew-head{padding:12px 10px}.sherpas-embed .ew-head .t{font-size:10px}.sherpas-embed .ew-actions{padding:8px 10px 12px;gap:7px}.sherpas-embed .ew-actions .grow{display:none}.sherpas-embed .ew-actions button,.sherpas-embed .sh-gmail{padding:8px 10px}.sherpas-embed .client-report .bh{gap:6px}.sherpas-embed .client-report .bh .n{margin-left:0}}
+.sherpas-embed .sh-history{margin-top:32px;padding-top:24px;border-top:1px solid var(--line)}
+.sherpas-embed .sh-history-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.sherpas-embed .sh-history h3{margin:0;font-size:18px;color:var(--brand)}
+.sherpas-embed .sh-history-item{border:1px solid var(--line);border-radius:10px;margin-top:10px;background:#fafcfc;padding:0 14px}
+.sherpas-embed .sh-history-item summary{display:flex;align-items:center;gap:10px;padding:14px 0;min-height:64px;cursor:pointer;list-style:none}
+.sherpas-embed .sh-history-item summary:after{content:'+';color:var(--mute);margin-left:6px}
+.sherpas-embed .sh-history-item[open] summary:after{content:'−'}
+.sherpas-embed .sh-history-item b{font-size:13px;font-weight:650}
+.sherpas-embed .sh-history-item small{display:block;font-size:11px;color:var(--mute);margin-top:3px}
+.sherpas-embed .sh-history-dot{width:8px;height:8px;background:#80b29d;border-radius:50%;flex-shrink:0}
+.sherpas-embed .sh-history-sent{font-size:10px;font-weight:650;color:var(--green);margin-left:auto;white-space:nowrap}
+.sherpas-embed .sh-history-item>p{font-size:13px;margin:0 0 14px}
+.sherpas-embed #clearSearch{flex-shrink:0;white-space:nowrap;min-width:60px}
+.sherpas-embed .sh-search-box>span{flex-shrink:0}
+.sherpas-embed .main{max-width:none}
+.sherpas-embed .auto-h{display:block;line-height:1.5}
+.sherpas-embed .auto-h>span{display:block;white-space:normal}
+.sherpas-embed .auto-h .auto-count{margin:6px 0 0;display:inline-block}
+.sherpas-embed dialog.modal-ov{position:absolute!important;bottom:auto!important;inset-inline:0!important;height:auto!important;max-height:650px!important;align-items:flex-start!important;display:block!important}
+.sherpas-embed dialog.modal-ov:not([open]){display:none!important}
+.sherpas-embed dialog.modal-ov .modal{display:block!important;max-height:640px!important;overflow:auto!important;min-height:0!important}
+.sherpas-embed #pmBody{max-height:430px!important;overflow:auto!important}
+</style></head><body><div class="sherpas-embed"><style>
+:root{--bg:#f4f6f8;--card:#fff;--ink:#14212b;--mute:#5d6b78;--line:#e1e6eb;--brand:#0f4c5c;--brand2:#1b7a8c;--red:#c0392b;--amber:#b7791f;--green:#1f8a5b;--grey:#eef0f2}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);font-size:14px;line-height:1.5}
+a{color:var(--brand2);text-decoration:none}a:hover{text-decoration:underline}
+.top{height:56px;background:var(--brand);color:#fff;display:flex;align-items:center;padding:0 22px;gap:18px}
+.brand{font-weight:700;font-size:17px;letter-spacing:.2px}.brand span{font-weight:400;opacity:.8}
+.top .sp{flex:1}.top a{color:#cfe8ee;font-size:13px}
+.counter{font-size:12px;background:rgba(255,255,255,.13);padding:4px 10px;border-radius:12px}
+.layout{display:flex;min-height:calc(100vh - 56px)}
+.side{width:330px;background:#fff;border-right:1px solid var(--line);padding:18px 14px;flex-shrink:0}
+.side h4{margin:0 8px 10px;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--mute)}
+.ev{padding:12px 12px;border:1px solid var(--line);border-radius:10px;margin-bottom:10px;cursor:pointer;background:#fff}
+.ev:hover{border-color:#b9c4cd}.ev.active{border-color:var(--brand2);box-shadow:0 0 0 2px #1b7a8c22;background:#f6fbfc}
+.ev .t{font-weight:600;margin:6px 0 2px}.ev .m{font-size:12px;color:var(--mute)}
+.badge{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.6px;padding:2px 8px;border-radius:10px;color:#fff}
+.b-vi{background:var(--red)}.b-i{background:var(--amber)}
+.main{flex:1;padding:26px 34px;max-width:980px}
+.main h1{font-size:22px;margin:0 0 4px}.sub{color:var(--mute);margin:0 0 20px}
+.sec{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--mute);margin:26px 0 10px}
+.fam{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:16px}
+.fam h3{margin:0;font-size:16px}.reason{margin:4px 0 12px;color:#2c3e4b;background:#f1f7f9;border-left:3px solid var(--brand2);padding:7px 11px;border-radius:0 6px 6px 0}
+.fam.na{background:var(--grey);border-style:dashed;color:#59656f}.fam.na h3{color:#59656f}
+.na .tag{font-weight:600;color:#6b7782}
+.draft{border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-top:10px;background:#fcfdfd}
+.draft .who{display:flex;gap:8px;align-items:center;margin-bottom:6px;font-size:12px;color:var(--mute)}
+.pill{background:#e8f1f4;color:var(--brand);padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600}
+.draft .subj{font-weight:600;margin-bottom:6px}
+.draft .body{white-space:pre-wrap;font-size:13.5px;color:#24323d}
+textarea{width:100%;min-height:230px;font:inherit;font-size:13.5px;padding:10px;border:1px solid var(--brand2);border-radius:8px;resize:vertical}
+.btns{display:flex;gap:8px;margin-top:10px}
+button{font:inherit;font-size:13px;padding:6px 14px;border-radius:8px;border:1px solid var(--line);background:#fff;cursor:pointer}
+button.pri{background:var(--brand2);color:#fff;border-color:var(--brand2)}button.pri:hover{background:var(--brand)}
+button.dng{color:var(--red)}
+.sent{margin-top:10px;color:var(--green);font-weight:600}
+.disc{margin-top:10px;color:var(--mute);font-style:italic}
+.draft.done{opacity:.85}
+.note{font-size:12px;color:var(--mute);margin-top:30px}
+/* client */
+.gm{background:#f6f8fc;min-height:100vh}
+.gtop{height:60px;display:flex;align-items:center;padding:0 18px;gap:20px}
+.glogo{font-size:20px;color:#5f6368}.glogo b{color:#c5221f}
+.gsearch{flex:1;max-width:620px;background:#eaf1fb;border-radius:24px;padding:10px 18px;color:#5f6368}
+.gwrap{display:flex}.gside{width:210px;padding:8px 12px;color:#3c4043}
+.gcomp{background:#c2e7ff;border-radius:16px;padding:14px 22px;font-weight:600;display:inline-block;margin:6px 0 14px}
+.gside div.i{padding:6px 14px;border-radius:0 16px 16px 0}.gside div.i.a{background:#d3e3fd;font-weight:700}
+.gmail{flex:1;background:#fff;border-radius:16px;margin:0 16px 16px 0;padding:22px 34px;min-height:600px}
+.gmail h2{font-weight:400;font-size:22px;margin:0 0 16px}
+.gh{display:flex;gap:12px;align-items:center;margin-bottom:18px}
+.av{width:40px;height:40px;border-radius:50%;background:var(--brand2);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700}
+.gh .n{font-weight:600}.gh .e{color:#5f6368;font-size:12px}.gh .d{margin-left:auto;color:#5f6368;font-size:12px}
+.mbody{max-width:640px;font-size:14.5px;line-height:1.6;white-space:pre-wrap}
+.cta{display:inline-block;background:var(--brand);color:#fff!important;padding:12px 22px;border-radius:8px;font-weight:600;margin:6px 0 16px;cursor:pointer;text-decoration:none!important}
+.sig{color:#444}
+.portal{background:var(--bg);min-height:100vh}
+.pbody{max-width:860px;margin:0 auto;padding:30px 22px}
+.pcard{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px 24px;margin-bottom:18px}
+.pcard h2{margin:0 0 10px;font-size:17px}
+.kp{display:flex;gap:14px;flex-wrap:wrap}.kpi{flex:1;min-width:190px;background:#f1f7f9;border-radius:10px;padding:12px 14px}
+.kpi .v{font-size:22px;font-weight:700;color:var(--brand)}.kpi .l{font-size:12px;color:var(--mute)}
+ul.k{margin:8px 0 0;padding-left:18px}ul.k li{margin-bottom:6px}
+.goal{border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:10px}
+.goal .gt{display:flex;justify-content:space-between;font-weight:600}
+.imp{font-size:11px;font-weight:700;padding:2px 9px;border-radius:10px;background:#e3f4ec;color:var(--green)}
+.rev{display:flex;align-items:center;gap:10px;background:#e8f5ee;border:1px solid #bfe3cf;color:#1c6b49;padding:12px 16px;border-radius:10px;font-weight:600}
+.hidden{display:none}
+@media(max-width:800px){.layout{flex-direction:column}.side{width:auto}.main{padding:18px}.gside{display:none}}
+
+.client-report /* report view */
+.rbanner{display:flex;align-items:center;gap:10px;background:#e8f5ee;border:1px solid #bfe3cf;color:#1c6b49;padding:12px 16px;border-radius:10px;font-weight:600;font-size:13.5px;margin-bottom:20px}.client-report .rcard{background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px 26px;margin-bottom:18px}.client-report .rcard h3{margin:0 0 14px;font-size:17px;font-weight:700}.client-report .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px}.client-report .kpi{background:var(--score-bg);border-radius:10px;padding:14px 16px}.client-report .kpi .v{font-size:24px;font-weight:800;color:#000;letter-spacing:-.5px}.client-report .kpi .l{font-size:12px;color:#4b5563;margin-top:2px}.client-report ul.k{margin:6px 0 0;padding-left:20px}.client-report ul.k li{margin-bottom:8px;font-size:13.5px;color:#1f2937}.client-report .goal{border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-bottom:12px}.client-report .goal:last-child{margin-bottom:0}.client-report .goal .gt{display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:14px}.client-report .imp{font-size:11px;font-weight:700;padding:3px 10px;border-radius:10px;background:#e3f4ec;color:var(--green)}.client-report .imp.warn{background:#fdf1d8;color:#b7791f}.client-report .goal .gd{color:#4b5563;margin-top:6px;font-size:13px}.client-report .rmeta{color:var(--mute);font-size:13px;margin:0 0 18px}.client-report .backlink{font-size:12.5px;color:var(--mute);cursor:pointer}.client-report .backlink:hover{color:#000}.client-report /* ===== v4 feed ===== */
+.feed{position:relative;padding-left:34px;margin-top:6px}.client-report .feed:before{content:"";position:absolute;left:11px;top:14px;bottom:20px;width:2px;background:linear-gradient(#a5b4fc,#e5e7eb 30%)}.client-report .fdate{position:relative;font-size:12px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--mute);margin:0 0 10px}.client-report .fdate:before{content:"";position:absolute;left:-30px;top:2px;width:14px;height:14px;border-radius:50%;background:#fff;border:3px solid #c7cdf0}.client-report .fdate.now{color:#4338ca}.client-report .fdate.now:before{background:#4f46e5;border-color:#c7d2fe;box-shadow:0 0 0 5px rgba(79,70,229,.15)}.client-report .fdate .today{background:#4f46e5;color:#fff;border-radius:9px;padding:2px 9px;margin-left:8px;font-size:10.5px;letter-spacing:.3px}.client-report .fentry{margin-bottom:28px}.client-report .hero{background:#fff;border:1px solid #d9dcf5;border-radius:18px;box-shadow:0 10px 30px rgba(79,70,229,.10);overflow:hidden}.client-report .hhead{background:linear-gradient(120deg,#e7eafa,#efeaff);padding:22px 26px;display:flex;gap:16px;align-items:center}.client-report .hhead .hav{width:48px;height:48px;border-radius:50%;background:#1b7a8c;color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}.client-report .hhead h3{margin:0;font-size:21px;font-weight:800;letter-spacing:-.3px;color:#000;line-height:1.25}.client-report .hhead .sub{font-size:12.5px;color:#4b5563;margin-top:3px}.client-report .chip{display:inline-block;font-size:11px;font-weight:700;padding:3px 10px;border-radius:10px;background:#fff;color:#4338ca;border:1px solid #c7d2fe;margin-right:6px}.client-report .chip.g{color:var(--green);border-color:#bfe3cf;background:#e8f5ee}.client-report .hbody{padding:6px 26px 26px}.client-report .blk{margin-top:22px}.client-report .bh{display:flex;align-items:center;gap:10px;margin-bottom:12px}.client-report .bi{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}.client-report .bi svg{width:18px;height:18px;stroke:#fff;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}.client-report .bi.b1{background:#4f46e5}.client-report .bi.b2{background:var(--orange)}.client-report .bi.b3{background:var(--green)}.client-report .bh h4{margin:0;font-size:16px;font-weight:800}.client-report .bh .n{font-size:11px;font-weight:700;color:var(--mute);margin-left:auto;text-transform:uppercase;letter-spacing:.4px}.client-report .rise{display:flex;align-items:center;gap:14px;background:#faf9ff;border:1px solid #e4e1fb;border-radius:12px;padding:14px 18px;margin-bottom:14px;flex-wrap:wrap}.client-report .rise .f{font-size:13px;color:#4b5563}.client-report .rise .f b{display:block;font-size:22px;color:#000;letter-spacing:-.5px}.client-report .rise .arrow{font-size:20px;color:#4f46e5}.client-report .rise .pill{margin-left:auto;text-align:right;font-size:12.5px;color:#4b5563}.client-report .rise .pill span{display:inline-block;background:#4f46e5;color:#fff;font-weight:700;border-radius:10px;padding:3px 11px;margin-bottom:3px;font-size:12.5px}.client-report .goals{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.client-report .goals .goal{margin:0;border-top:3px solid #34d399;background:#fff}.client-report .goals .goal.w{border-top-color:#f59e42;background:#fffbf3}.client-report .goals .gi{font-size:22px;margin-bottom:4px}.client-report .goals .gt{margin-bottom:2px}.client-report .opts{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.client-report .opt{text-align:left;font:inherit;background:#fff;border:1.5px solid #d9dcf5;border-radius:14px;padding:16px;cursor:pointer;transition:.15s;display:block;width:100%;color:var(--ink)}.client-report .opt:hover{border-color:#4f46e5;box-shadow:0 6px 16px rgba(79,70,229,.14);transform:translateY(-1px)}.client-report .opt .oi{font-size:22px;display:block;margin-bottom:6px}.client-report .opt .ot{font-weight:700;font-size:14px;display:block;margin-bottom:3px}.client-report .opt .od{font-size:12.5px;color:#4b5563;display:block}.client-report .opt .go{display:inline-block;margin-top:10px;font-size:12px;font-weight:700;color:#4f46e5}.client-report .opt.done{background:#e8f5ee;border-color:#34d399;cursor:default;transform:none;box-shadow:none}.client-report .opt.done .go{color:var(--green)}.client-report .opt.dim{opacity:.5}.client-report .optmsg{margin-top:12px;font-size:13px;color:#1c6b49;font-weight:600;min-height:20px}
+
+
+:root{--score-bg:#e7eafa;--orange:#f59e42}
+button:focus-visible,a:focus-visible,[role=button]:focus-visible{outline:3px solid #a5b4fc;outline-offset:3px}
+.top{position:sticky;top:0;z-index:20}.top button{background:transparent;color:#fff;border-color:#8db9c3}.top .brand{white-space:nowrap}
+.draft.rich{background:linear-gradient(120deg,#f5f6ff,#fafaff);border-color:#c7cdf0;cursor:pointer}.draft.rich:hover{box-shadow:0 4px 18px #4f46e51a}.draft.rich .pill{background:#e7eafa;color:#4338ca}
+.report-preview{display:flex;gap:8px;margin:14px 0;flex-wrap:wrap}.report-preview span{font-size:12px;color:#4338ca;background:#fff;border:1px solid #d9dcf5;padding:5px 9px;border-radius:6px}
+.draft.rich .preview-copy{font-size:13px;color:#5d6b78}.draft.sent-card{border-color:#9bd4b3;background:#f3fbf6}.draft.sent-card .sent{font-size:13px}
+#editor{background:#f9fafb;min-height:calc(100vh - 56px)}#editor.hidden{display:none}
+.editor-top{position:sticky;top:56px;z-index:15;background:#fff;border-bottom:1px solid #e5e7eb;padding:13px 28px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}.editor-top .grow{flex:1}.editor-chip{font-size:12px;font-weight:700;border:1px solid #c7d2fe;background:#eef2ff;color:#4338ca;padding:5px 12px;border-radius:20px}.edit-status{font-size:12px;color:#6b7280}.editor-top button{min-height:38px}.editor-top button:disabled{opacity:.45;cursor:not-allowed}
+.client-report{--ink:#111827;--mute:#6b7280;--line:#e5e7eb;--green:#1f8a5b;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:14px;line-height:1.55;color:#111827;max-width:1100px;padding:26px 40px 60px;margin:auto}
+.client-report .sub{margin-bottom:0}.client-report .rise .pill{background:none;padding:0;border-radius:0;font-weight:400}.client-report .kpi{min-width:0}.client-report .goal .gt{gap:6px;flex-wrap:wrap}.client-report .goal .imp{white-space:nowrap}.client-report .opt{cursor:default}.client-report .opt:hover{transform:none;box-shadow:none;border-color:#d9dcf5}.client-report .opt .go{cursor:default}.client-report .feed{margin-top:20px}.client-report .fentry{margin-bottom:0}
+.report-context{display:flex;align-items:center;gap:12px;margin-bottom:8px}.report-context h2{font-size:22px;color:#111827;margin:0}.report-context .avatar{width:38px;height:38px;border-radius:50%;background:#e7eafa;color:#4338ca;display:grid;place-items:center;font-weight:700}.report-help{margin:0;color:#6b7280;font-size:12px}.client-report [contenteditable=true]{border-radius:4px;outline:1px dashed #c7cdf0;outline-offset:3px;cursor:text;transition:background .15s}.client-report [contenteditable=true]:hover{background:#eef2ff;outline-color:#818cf8}.client-report [contenteditable=true]:focus{background:#fffdf0;outline:2px solid #818cf8;box-shadow:0 0 0 5px #eef2ff}.client-report [data-changed=true]{background:#fff8dc}
+.edit-feedback{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:#0f4c5c;color:#fff;padding:12px 22px;border-radius:10px;box-shadow:0 6px 22px #14212b22;z-index:30;font-size:13px}.hidden{display:none!important}
+.demo-label{font-size:11px;color:#5d6b78;background:#e8f1f4;border-radius:7px;padding:4px 8px}.main{max-width:1100px}.sec-row{display:flex;justify-content:space-between;align-items:center}
+@media(max-width:1100px){.client-report .goals,.client-report .opts{grid-template-columns:1fr}.client-report .kpis{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:700px){.top{padding:0 12px;gap:8px}.counter{display:none}.editor-top{padding:10px 14px;gap:8px}.editor-top .grow{display:none}.client-report{padding:22px 14px 40px}.client-report .hhead{padding:18px;align-items:flex-start}.client-report .hbody{padding:4px 18px 20px}.client-report .hhead h3{font-size:19px}.client-report .kpis{grid-template-columns:1fr}.client-report .feed{padding-left:26px}.client-report .feed:before{left:7px}.client-report .fdate:before{left:-25px}.client-report .rise .pill{margin-left:0;text-align:left}.client-report .bh .n{font-size:9px}.client-report .hhead .hav{display:none}.side{padding-bottom:4px}.ev{padding:10px}.editor-chip{font-size:11px}}
+/* automatic messages */
+.auto-h{display:flex;align-items:center;gap:8px;margin:22px 8px 10px;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--mute)}
+.auto-count{font-size:10.5px;font-weight:700;letter-spacing:.3px;text-transform:none;background:#e3f4ec;color:var(--green);padding:3px 9px;border-radius:11px;white-space:nowrap}
+.am{border:1px solid var(--line);border-left:3px solid var(--green);border-radius:10px;padding:10px 12px;margin-bottom:10px;background:#fbfdfc}
+.am .f{font-weight:600;font-size:13px}
+.am .ty{font-size:12px;color:var(--mute);margin:1px 0 6px}
+.am .row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.chip-auto{display:inline-block;font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:10px;background:#e3f4ec;color:var(--green)}
+.am .dt{font-size:11.5px;color:var(--mute);margin-left:auto}
+.am .btns{margin-top:8px}
+.am button{font-size:12px;padding:4px 11px}
+button.ghost{color:var(--mute);opacity:.65}
+
+/* email workspace */
+.email-ws{margin-top:14px;border:1px solid var(--line);border-radius:12px;background:#fff;overflow:hidden}
+.ew-head{display:flex;align-items:center;gap:10px;padding:12px 16px;background:#f1f7f9;border-bottom:1px solid var(--line)}
+.ew-head .t{font-size:11px;letter-spacing:1px;text-transform:uppercase;font-weight:700;color:var(--brand)}
+.ew-head .note{margin-left:auto;font-size:12px;color:var(--mute);font-style:italic}
+.ew-fields{padding:12px 16px 0}
+.ew-fields label{display:block;font-size:11px;letter-spacing:.6px;text-transform:uppercase;color:var(--mute);margin:10px 0 4px}
+.ew-fields input{width:100%;font:inherit;font-size:13.5px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:#fff}
+.ew-fields input:focus,.ew-fields textarea:focus{border-color:var(--brand2);outline:none}
+.ew-fields textarea{min-height:250px;margin-bottom:12px}
+.ew-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:0 16px 14px}
+.ew-actions .grow{flex:1}
+.ew-sent{margin:2px 16px 14px;color:var(--green);font-weight:600;background:#e8f5ee;border:1px solid #bfe3cf;border-radius:8px;padding:9px 13px;font-size:13px}
+.email-ws.sent-ws{border-color:#9bd4b3;background:#f3fbf6}
+.email-ws.sent-ws .ew-head{background:#e8f5ee}
+.email-ws.sent-ws .ew-fields input,.email-ws.sent-ws .ew-fields textarea{background:#fbfdfb;color:#3c4a42;border-color:#cfe5d6}
+.pmod{max-width:1020px}
+#pmBody{border:1px solid var(--line);border-radius:10px;background:#f4f6f8;max-height:56vh;overflow:auto}
+#pmBody .client-report{padding:14px 18px;max-width:none}
+.modal-ov{position:fixed;inset:0;background:rgba(20,33,43,.45);z-index:40;display:flex;align-items:center;justify-content:center;padding:24px}
+.modal{background:#fff;border-radius:14px;max-width:560px;width:100%;max-height:84vh;overflow:auto;padding:22px 26px;box-shadow:0 18px 50px rgba(0,0,0,.25)}
+.modal .mh{display:flex;align-items:flex-start;gap:10px;margin-bottom:4px}
+.modal .mh h3{margin:0;font-size:17px;flex:1}
+.modal .mclose{border:none;background:none;font-size:20px;color:var(--mute);cursor:pointer;padding:0 4px;line-height:1}
+.modal .mm{font-size:12.5px;color:var(--mute);margin-bottom:12px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.modal .mbody{white-space:pre-wrap;font-size:13.5px;color:#24323d;background:#f8fafb;border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.modal .note-auto{font-size:12px;color:var(--mute);margin-top:12px;font-style:italic}
+
+.sherpas-embed{width:100%;overflow-wrap:anywhere}
+.top{height:auto;min-height:56px;flex-wrap:wrap;padding-top:8px;padding-bottom:8px}
+.main{min-width:0;width:100%}.btns{flex-wrap:wrap}.ew-head{flex-wrap:wrap}.ew-head .note{margin:0}
+button{min-height:40px}.ew-copy{display:inline-flex}.ew-copy button{font:inherit}
+.edit-feedback{position:absolute;left:50%;bottom:auto;width:max-content;max-width:calc(100% - 24px)}
+dialog.modal-ov{border:0;width:calc(100% - 24px);max-width:1020px;max-height:90vh;margin:auto;padding:0;background:transparent;position:fixed;inset:0}
+dialog.modal-ov:not([open]){display:none}dialog.modal-ov::backdrop{background:rgba(20,33,43,.45)}
+dialog .modal{width:100%;max-width:none;max-height:88vh}#pmBody{max-height:60vh}
+@media(max-width:700px){.main{padding:14px}.fam{padding:12px}.ew-fields{padding:10px}.ew-actions{padding:0 10px 12px}.modal{padding:16px}.ew-actions button{min-height:44px}.client-report .bh{flex-wrap:wrap}.brand{font-size:15px}}
+</style>
+<div class="top"><div class="brand">Sherpas <span>· Advisor</span></div><span class="counter" id="counter"></span><div class="sp"></div><button id="topOpen">Open Samantha's report</button></div>
+<section class="sh-hub" aria-label="Find a client"><div class="sh-hub-head"><div><p class="sh-eyebrow">Advisor workspace</p><h1>Your clients, one clear next step</h1><p class="sh-intro">Find a family, review their message, then open the client update.</p></div><span class="sh-session">Demo · session-only edits</span></div><div class="sh-search-row"><label class="sh-search-label" for="clientSearch">Find a client or message</label><div class="sh-search-box"><span aria-hidden="true">⌕</span><input id="clientSearch" type="search" placeholder="Try Samantha, Weah or market…" autocomplete="off" aria-controls="clientCards"><button id="clearSearch" type="button">Clear</button></div><span id="searchCount" role="status" aria-live="polite"></span></div><div id="clientCards" class="sh-client-grid"></div><p id="searchEmpty" class="sh-empty hidden">No clients match. Try a surname or a message type, such as market or birthday.</p><p class="sh-hint">Type to filter · Press Enter to open the first result · 4 case families</p></section><div class="layout"><aside class="side"><h4>Detected events · by priority</h4><div id="evlist"></div><div class="auto-h"><span>Automatic messages</span><span class="auto-count" id="autoCount"></span></div><div id="autolist"></div></aside><section class="main" id="main"></section></div>
+
+
+<section id="editor" class="hidden" aria-label="Client report editor">
+  <div class="editor-top"><button id="back">← Back to email</button><span class="editor-chip" id="modeChip">Client view - editable draft</span><span class="edit-status" id="editStatus" role="status">All changes saved</span><div class="grow"></div><button id="discardChanges">Discard</button><button id="saveChanges">Save changes</button><button class="pri" id="approveReport">Approve &amp; send</button></div>
+  <div class="client-report">
+    <div class="report-context"><div class="avatar">SL</div><div><h2>Samantha Lewis</h2><p class="report-help" id="reportHelp">Client layout · Click any outlined text to edit. Sending is simulated.</p></div></div>
+    <div class="feed"><div class="fentry"><div class="fdate now">Nov 21, 2026 <span class="today">TODAY</span></div><div class="hero">
+<div class="hhead">
+<div class="hav">AM</div>
+<div>
+<div style="margin-bottom:6px"><span class="chip">Family report</span></div>
+<h3 aria-label="Edit The 2027 Social Security wage base: about $484 more, no" data-field="0" role="textbox" tabindex="0">The 2027 Social Security wage base: about $484 more, nothing to fix</h3>
+<div class="sub">From Alex Morgan · event: 2027 Social Security wage base</div>
+</div>
+</div>
+<div class="hbody">
+<div class="blk">
+<div class="bh"><span class="bi b1"><svg viewbox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"></path><path d="M14 7h7v7"></path></svg></span><h4>What happened</h4><span class="n">1 of 3</span></div>
+<div class="rise">
+<div class="f">2026 wage base<b aria-label="Edit $184,500" data-field="1" role="textbox" tabindex="0">$184,500</b></div><div class="arrow">→</div><div class="f">2027 wage base<b aria-label="Edit $192,300" data-field="2" role="textbox" tabindex="0">$192,300</b></div>
+<div class="pill"><span>6.2% tax rate applies</span><br/>Effective Jan 1, 2027</div>
+</div>
+<div class="kpis">
+<div class="kpi"><div aria-label="Edit $192,300" class="v" data-field="3" role="textbox" tabindex="0">$192,300</div><div aria-label="Edit 2027 wage base (from $184,500)" class="l" data-field="4" role="textbox" tabindex="0">2027 wage base (from $184,500)</div></div>
+<div class="kpi"><div aria-label="Edit +$484" class="v" data-field="5" role="textbox" tabindex="0">+$484</div><div aria-label="Edit your extra Social Security tax in 2027, about $40 a mon" class="l" data-field="6" role="textbox" tabindex="0">your extra Social Security tax in 2027, about $40 a month</div></div>
+<div class="kpi"><div aria-label="Edit +$500" class="v" data-field="7" role="textbox" tabindex="0">+$500</div><div aria-label="Edit standard deduction, single: $16,100 → $16,600" class="l" data-field="8" role="textbox" tabindex="0">standard deduction, single: $16,100 → $16,600</div></div>
+</div>
+<ul class="k">
+<li aria-label="Edit Social Security tax is 6.2% on wages up to the wage bas" data-field="9" role="textbox" tabindex="0">Social Security tax is 6.2% on wages up to the wage base. Your $250,000 salary is above it in both years.</li>
+<li aria-label="Edit The base rises by $7,800, so 6.2% of that is about $484" data-field="10" role="textbox" tabindex="0">The base rises by $7,800, so 6.2% of that is about $484.</li>
+</ul>
+</div>
+<div class="blk">
+<div class="bh"><span class="bi b2"><svg viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="4"></circle><path d="M12 3v3M12 18v3M3 12h3M18 12h3"></path></svg></span><h4>How it affects you</h4><span class="n">2 of 3</span></div>
+<div class="goals">
+<div class="goal"><div class="gi"><svg fill="none" height="22" stroke="#4f46e5" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="22"><path d="M22 10L12 5 2 10l10 5 10-5z"></path><path d="M6 12v5c3 2 9 2 12 0v-5"></path></svg></div><div class="gt"><span aria-label="Edit Ethan and Ava's college" data-field="11" role="textbox" tabindex="0">Ethan and Ava's college</span><span aria-label="Edit Low impact" class="imp" data-field="12" role="textbox" tabindex="0">Low impact</span></div><div aria-label="Edit Ethan's $12,500 is due Aug 2027, Ava starts Aug 2028. $" class="gd" data-field="13" role="textbox" tabindex="0">Ethan's $12,500 is due Aug 2027, Ava starts Aug 2028. $98,838 of $100,000 is still unfunded, with $0 in 529s. The $484 is small next to that gap, but it comes from the same cash.</div></div>
+<div class="goal"><div class="gi"><svg fill="none" height="22" stroke="#4f46e5" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="22"><path d="M3 11l9-8 9 8"></path><path d="M5 10v10h14V10"></path><path d="M10 20v-6h4v6"></path></svg></div><div class="gt"><span aria-label="Edit Second home, 2030" data-field="14" role="textbox" tabindex="0">Second home, 2030</span><span aria-label="Edit Low impact" class="imp" data-field="15" role="textbox" tabindex="0">Low impact</span></div><div aria-label="Edit $500,000 purchase (about $562,754 by 2030), $112,551 do" class="gd" data-field="16" role="textbox" tabindex="0">$500,000 purchase (about $562,754 by 2030), $112,551 down. The date does not move. Cash is $750 above reserve, so we keep watching it.</div></div>
+<div class="goal w"><div class="gi"><svg fill="none" height="22" stroke="#f59e42" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="22"><path d="M3 12h4l3-8 4 16 3-8h4"></path></svg></div><div class="gt"><span aria-label="Edit Yearly cash flow" data-field="17" role="textbox" tabindex="0">Yearly cash flow</span><span aria-label="Edit Watch" class="imp warn" data-field="18" role="textbox" tabindex="0">Watch</span></div><div aria-label="Edit You are about $6,418 a year short. The extra $484 adds " class="gd" data-field="19" role="textbox" tabindex="0">You are about $6,418 a year short. The extra $484 adds about 7.5% to that. Not urgent, and on our review list.</div></div>
+</div>
+</div>
+<div class="blk">
+<div class="bh"><span class="bi b3"><svg viewbox="0 0 24 24"><path d="M9 11l3 3 8-8"></path><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"></path></svg></span><h4>Your options</h4><span class="n">3 of 3 · tap one</span></div>
+<div class="opts" id="opts">
+<div class="opt"><span class="oi"><svg fill="none" height="22" stroke="#4f46e5" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="22"><path d="M22 10L12 5 2 10l10 5 10-5z"></path><path d="M6 12v5c3 2 9 2 12 0v-5"></path></svg></span><span aria-label="Edit Move $40/month to the kids' 529" class="ot" data-field="20" role="textbox" tabindex="0">Move $40/month to the kids' 529</span><span aria-label="Edit Offsets the $484 and starts the college fund." class="od" data-field="21" role="textbox" tabindex="0">Offsets the $484 and starts the college fund.</span><span class="go">Choose this →</span></div>
+<div class="opt"><span class="oi"><svg fill="none" height="22" stroke="#4f46e5" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="22"><rect height="16" rx="2" width="18" x="3" y="5"></rect><path d="M16 3v4M8 3v4M3 11h18"></path></svg></span><span aria-label="Edit Fold it into the yearly review" class="ot" data-field="22" role="textbox" tabindex="0">Fold it into the yearly review</span><span aria-label="Edit No change now. Alex covers it at your next review." class="od" data-field="23" role="textbox" tabindex="0">No change now. Alex covers it at your next review.</span><span class="go">Choose this →</span></div>
+<div class="opt"><span class="oi"><svg fill="none" height="22" stroke="#4f46e5" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="22"><path d="M21 12a8 8 0 0 1-11.5 7.2L4 20l1-4.5A8 8 0 1 1 21 12z"></path></svg></span><span aria-label="Edit Talk to Alex" class="ot" data-field="24" role="textbox" tabindex="0">Talk to Alex</span><span aria-label="Edit A short call to walk through your numbers." class="od" data-field="25" role="textbox" tabindex="0">A short call to walk through your numbers.</span><span class="go">Choose this →</span></div>
+</div>
+<div aria-label="Edit No action is needed from you. Pick an option only if yo" class="optmsg" data-field="26" id="optmsg" role="textbox" tabindex="0">No action is needed from you. Pick an option only if you want one.</div>
+</div>
+</div>
+</div></div></div>
+  <section class="sh-history" aria-label="Previous client updates"><div class="sh-history-head"><div><p class="sh-eyebrow">Relationship history</p><h3>Previously shared with Samantha</h3></div><span class="sh-session">Read-only · simulated</span></div><p class="sh-muted">Illustrative demo history, not actual delivery records. The current update above remains editable until approved.</p><details class="sh-history-item"><summary><span class="sh-history-dot"></span><span><b>Birthday note</b><small>14 Oct 2026 · Personal message</small></span><span class="sh-history-sent">✓ Sent</span></summary><p>Happy birthday, Samantha. Wishing you a wonderful day with the kids.</p><p class="sh-muted">Sent by Alex Morgan · Simulated delivery · Read-only</p></details><details class="sh-history-item"><summary><span class="sh-history-dot"></span><span><b>College funding check-in</b><small>15 Sep 2026 · Family plan update</small></span><span class="sh-history-sent">✓ Sent</span></summary><p>Reviewed the upcoming college milestones: Ethan's August 2027 payment of $12,500 and Ava's start in 2028. These dates remain part of the family plan.</p><p class="sh-muted">Sent by Alex Morgan · Illustrative prior update · Read-only</p></details><details class="sh-history-item"><summary><span class="sh-history-dot"></span><span><b>Home goal review</b><small>18 Aug 2026 · Planning summary</small></span><span class="sh-history-sent">✓ Sent</span></summary><p>Kept the 2030 home purchase on the planning timeline, alongside the children's college needs. We will continue reviewing cash flow at each family check-in.</p><p class="sh-muted">Sent by Alex Morgan · Illustrative prior update · Read-only</p></details></section></div>
+</section><dialog id="amodal" class="modal-ov hidden" role="dialog" aria-modal="true" aria-label="Automatic message">
+  <div class="modal">
+    <div class="mh"><h3 id="amTitle"></h3><button class="mclose" id="amClose" aria-label="Close">&times;</button></div>
+    <div class="mm"><span class="chip-auto">Sent automatically</span><span id="amMeta"></span></div>
+    <div class="mbody" id="amBody"></div>
+    <div class="btns"><button class="ghost" id="amRecall">Recall (simulated)</button><button class="pri" id="amOk">Close</button></div>
+    <div class="note-auto">Light relationship messages are sent automatically under Sherpas graduated autonomy. They never require advisor approval; financial or complex messages always do.</div>
+  </div>
+</dialog>
+<dialog id="pmodal" class="modal-ov hidden" role="dialog" aria-modal="true" aria-label="Client feed preview">
+  <div class="modal pmod">
+    <div class="mh"><h3>How Samantha will see this update</h3><button class="mclose" id="pmClose" aria-label="Close">&times;</button></div>
+    <div class="mm"><span class="chip-auto" style="background:#e7eafa;color:#4338ca">Client app &middot; feed preview</span><span>Read-only &middot; this is the entry her app shows</span></div>
+    <div id="pmBody"></div>
+    <div class="btns"><button class="pri" id="pmOk">Close</button></div>
+  </div>
+</dialog>
+<div id="feedback" class="edit-feedback hidden" role="status"></div>
+</div><script>function mountEmailCopy(el, getText, toast) {
+  const b = el.querySelector('[data-a="copy"]');
+  if (b) b.onclick = async () => {
+    try {
+      await navigator.clipboard.writeText(getText());
+      toast("Copied");
+    } catch (e) {
+      const x = document.createElement("textarea");
+      x.value = getText();
+      document.body.appendChild(x);
+      x.select();
+      const ok = document.execCommand("copy");
+      x.remove();
+      toast(ok ? "Copied" : "Copy blocked. Select the message and copy it manually.");
+    }
+  };
+}
+function runPageScripts() {
+  window.SHERPAS = {
+    advisor: "Alex Morgan",
+    stats: "150 families simulated \xB7 23 drafts \xB7 127 silent",
+    events: [
+      {
+        id: "wage-base",
+        priority: "VERY IMPORTANT",
+        cls: "b-vi",
+        title: "2027 Social Security wage base",
+        meta: "SSA \xB7 published Nov 2026 \xB7 effective Jan 1, 2027 \xB7 1 family affected",
+        summary: "The Social Security wage base rises from $184,500 to $192,300 on January 1, 2027. Anyone earning above it pays 6.2% on the extra $7,800.",
+        affected: [
+          {
+            family: "Samantha Lewis",
+            reason: "Salary $250,000 is above the new $192,300 wage base: her Social Security tax rises about $484 in 2027 (6.2% on the extra $7,800).",
+            drafts: [{
+              member: "Samantha",
+              profile: "Validator \xB7 motivated by duty to her kids \xB7 wants the numbers checked",
+              to: "samantha.lewis@email.com",
+              subject: "The 2027 Social Security change: about $484 more for you, nothing to fix",
+              body: "Hi Samantha,\n\nYou may have seen headlines about the Social Security wage base going up in 2027. I wanted you to hear it from me, with your own numbers.\n\nThe cap on wages that Social Security tax applies to moves from $184,500 to $192,300. Your $250,000 salary is above both, so you will pay 6.2% on the extra $7,800: about $484 more next year, roughly $40 a month.\n\nI checked it against your plan. It does not change Ethan's August 2027 payment of $12,500, Ava's start in 2028 or the 2030 home purchase. It does add a little to a yearly cash flow we are already watching, so I will fold it into our next review. One small offset: the single-filer standard deduction rises $500, to $16,600.\n\nYou don't need to do anything. I put the figures, and what they mean for the kids' college and the house, in your family report.\n\nWarmly,\nAlex"
+            }]
+          }
+        ],
+        notAffected: [
+          { family: "Michael Carter", reason: "His $180,000 salary is below the $192,300 wage base, so his payroll tax does not change. No children, so the child tax credit does not apply. Standard deduction +$500 (single)." },
+          { family: "Timothy & Melanie Weah", reason: "Salaries of $150,000 and $120,000 are both below the wage base: no payroll tax change. Standard deduction +$1,000 and child tax credit +$200 (Liam, Josh) are small positives, nothing to act on." },
+          { family: "Daniel & Emily Johnson", reason: "Salaries of $160,000 and $120,000 are both below the wage base: no payroll tax change. Standard deduction +$1,000 and child tax credit +$200 (Oliver, Sophia) are small positives, nothing to act on." }
+        ]
+      },
+      {
+        id: "market",
+        priority: "IMPORTANT",
+        cls: "b-i",
+        title: "Market sell-off: S&P 500 \u221210% in two days",
+        meta: "Tariff-shock scenario (Apr 2025 replay) \xB7 3 families checked \xB7 2 affected",
+        summary: "Scenario based on the April 2, 2025 tariff announcement, applied to each family's current portfolio from their investment analysis.",
+        affected: [
+          {
+            family: "Timothy & Melanie Weah",
+            reason: "Portfolio fell 7.1% in this shock (about $25,600 of their $360,000), vs 6.2% for a simple mix with the same stock share. Timothy is Growth, Melanie is Moderate, so the same news needs two different messages.",
+            drafts: [
+              {
+                member: "Timothy",
+                profile: "Growth (4) \xB7 Collaborator \xB7 holds $12,740 of UPRO in his Roth",
+                to: "timothy.weah@email.com",
+                subject: "Markets dropped 10% in two days: here is how your side held up",
+                body: "Hi Timothy,\n\nQuick, straight update. The S&P 500 lost about 10% in two days after the tariff announcement. On your household portfolio the same move is a fall of 7.1%, about $25,600 on the $360,000 you hold in investments and cash. A simple mix with the same stock share fell 6.2%, so we are a bit hotter than the benchmark.\n\nThe numbers that matter:\n- $150,000 of your total is cash and does not move with the market.\n- Your worst fall in the last three years was 9.2%, and it recovered in 37 days.\n- Your $12,740 in UPRO, the 3x leveraged fund in your Roth, swings harder than everything else. It is the one position I would like us to talk about.\n\nNo trade needed today. If you want, let's do 20 minutes this week on UPRO and on how the mix fits what you and Melanie agreed.\n\nAlex"
+              },
+              {
+                member: "Melanie",
+                profile: "Moderate (3) \xB7 prefers to understand the reasoning \xB7 Protection-minded",
+                to: "melanie.weah@email.com",
+                subject: "Markets are down today. Your plan was built for this.",
+                body: "Hi Melanie,\n\nYou may be seeing worrying headlines today, so I wanted to write before you had to wonder. Stocks fell about 10% in two days. This is a normal kind of market drop, and your plan was built to take it.\n\nFor your family, the portfolio fell 7.1% in a drop like this, which is about $25,600. Two things keep you steady:\n- $150,000 of what you own is in cash, and cash does not fall when markets do.\n- Your worst fall in the last three years was 9.2%, and it was back to even in 37 days.\n\nYou don't need to sell anything or change anything. Your retirement plan is on track, and nothing in the plan depends on today's prices. I am watching it, and I am always glad to talk it through, with Timothy or just the two of us.\n\nAlex"
+              }
+            ]
+          },
+          {
+            family: "Daniel & Emily Johnson",
+            reason: "Portfolio fell 8.1% (about $27,800 of their $344,000). Technology is 35.6% of their stocks, and the kids' 529 holds $25,000 in emerging-market stocks (VWO).",
+            drafts: [
+              {
+                member: "Daniel",
+                profile: "Growth (4) \xB7 shares decisions with Emily \xB7 holds the card and student loan",
+                to: "daniel.johnson@email.com",
+                subject: "Markets fell 10% in two days: your numbers",
+                body: "Hi Daniel,\n\nHeads up on the sell-off. The S&P 500 lost about 10% in two days. Your household portfolio would fall 8.1%, about $27,800 on $344,000, against 7.8% for a simple mix with the same stock share.\n\nWhat stands out for you: technology is 35.6% of your stock holdings, mostly through VTI, so tech-led drops hit a little harder. Your worst fall in the last three years was 10.0%, and it recovered in 61 days.\n\nNo action needed today. When we meet, I'd like to look at that tech weight together.\n\nAlex"
+              },
+              {
+                member: "Emily",
+                profile: "Moderate (3) \xB7 makes the household saving and manages the 529 \xB7 Protection-minded",
+                to: "emily.johnson@email.com",
+                subject: "A market drop today, and what it means for Oliver and Sophia's 529",
+                body: "Hi Emily,\n\nThe market fell about 10% in two days. It's unsettling, and it is also something your plan expects from time to time.\n\nYour household portfolio would be down about 8.1% (about $27,800). The 529 is mostly emerging-market stocks ($25,000 of the $30,000), so it moves with the market, but Oliver starts college in August 2033 and Sophia in 2035, so there is time for it to recover. Past drops of this size came back in about two months.\n\nPlease don't change your saving. Your $8,000 a year into the 529 keeps working through dips like this. I'll check in again once things settle.\n\nAlex"
+              }
+            ]
+          }
+        ],
+        notAffected: [
+          { family: "Michael Carter", reason: "Portfolio fell 8.4%, in line with his Growth profile (stated, revealed and inferred all Growth) and his worst recent fall of 10.2% recovered in 62 days. Renter, no dependants. His January 2027 down payment is tracked in his own plan, so no message now." }
+        ]
+      }
+    ]
+  };
+  (function() {
+    const D = window.SHERPAS, key = "sherpas-advisor-v2", reportKey = "wage-base-0-0";
+    let cur = 0, store = {}, activeClient = "Samantha Lewis", searchQuery = "";
+    const state = store.drafts || {}, report = store.report || {}, fields = [...document.querySelectorAll("[data-field]")];
+    let dirty = false, timer;
+    const defaults = fields.map((x) => x.textContent);
+    const side = document.getElementById("evlist"), main = document.getElementById("main"), editor = document.getElementById("editor"), layout = document.querySelector(".layout");
+    const $ = (id) => document.getElementById(id);
+    function persist() {
+    }
+    function esc(s) {
+      return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
+    }
+    function toast(text) {
+      const r = document.activeElement?.getBoundingClientRect();
+      $("feedback").style.top = (r ? r.bottom : 30) + window.scrollY + 8 + "px";
+      $("feedback").textContent = text;
+      $("feedback").classList.remove("hidden");
+      clearTimeout(timer);
+      timer = setTimeout(() => $("feedback").classList.add("hidden"), 3500);
+    }
+    function copyText(t) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(t).then(() => toast("Copied"), () => fallbackCopy(t));
+      } else fallbackCopy(t);
+    }
+    function fallbackCopy(t) {
+      const ta = document.createElement("textarea");
+      ta.value = t;
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      try {
+        document.execCommand("copy");
+        toast("Copied");
+      } catch (e) {
+        toast("Copy failed. Select the text and copy manually.");
+      }
+      ta.remove();
+    }
+    const EMAIL_DEFAULT = { to: "samantha.lewis@email.com", subject: "The 2027 Social Security wage base: about $484 more, nothing to fix", body: D.events[0].affected[0].drafts[0].body };
+    function get(key2, dr) {
+      return state[key2] || (state[key2] = { status: "pending", body: dr ? dr.body : "" });
+    }
+    function renderSide() {
+      side.innerHTML = "";
+      D.events.forEach((e, i) => {
+        const d = document.createElement("div");
+        d.className = "ev" + (i === cur ? " active" : "");
+        d.tabIndex = 0;
+        d.setAttribute("role", "button");
+        d.innerHTML = '<span class="badge ' + e.cls + '">' + e.priority + '</span><div class="t">' + esc(e.title) + '</div><div class="m">' + esc(e.meta) + "</div>";
+        d.onclick = () => {
+          if (dirty) {
+            toast("Save or discard your report changes first.");
+            return;
+          }
+          cur = i;
+          activeClient = "";
+          editor.classList.add("hidden");
+          renderSide();
+          renderMain();
+          renderClients();
+        };
+        d.onkeydown = (e2) => {
+          if (e2.key === "Enter" || e2.key === " ") {
+            e2.preventDefault();
+            d.click();
+          }
+        };
+        side.appendChild(d);
+      });
+    }
+    function draftEl(k, dr) {
+      const s = get(k, dr), rich = k === reportKey, el = document.createElement("div");
+      el.className = "draft" + (rich ? " rich" : "") + (s.status === "sent" ? " sent-card" : "");
+      el.dataset.key = k;
+      let h = '<div class="who"><b>' + esc(dr.member) + '</b><span class="pill">' + (rich ? "Financial report \xB7 client layout" : "Personal message") + '</span></div><div class="who">To: ' + esc(dr.to) + "</div>";
+      if (rich) {
+        h += '<div class="subj">' + esc(report["0"] || defaults[0]) + '</div><div class="preview-copy">Review the exact report Samantha will see, with editable insights, impact cards and options.</div><div class="report-preview"><span>1 \xB7 What happened</span><span>2 \xB7 How it affects you</span><span>3 \xB7 Your options</span></div>';
+        if (s.status === "sent") h += '<div class="sent">\u2713 Approved - sent to client <span style="font-weight:400">(simulated)</span></div>';
+        h += '<div class="btns"><button class="pri" data-a="open">' + (s.status === "sent" ? "View sent report" : "Open client view & edit") + "</button>" + (s.status !== "sent" ? '<button data-a="approve-rich">Review & approve</button>' : "") + "</div>";
+      } else {
+        h += '<div class="subj">' + esc(dr.subject) + "</div>";
+        if (s.status === "editing") h += '<textarea aria-label="Edit message">' + esc(s.body) + '</textarea><div class="btns"><button data-a="save" class="pri">Save changes</button><button data-a="cancel">Discard changes</button></div>';
+        else {
+          h += '<div class="body">' + esc(s.body) + "</div>";
+          if (s.status === "pending") h += '<div class="btns"><button class="pri" data-a="approve">Approve & send</button><button data-a="edit">Edit message</button><button data-a="discard">Discard draft</button></div>';
+          if (s.status === "sent") h += '<div class="sent">\u2713 Approved - sent to client (simulated)</div>';
+          if (s.status === "discarded") h += '<div class="disc">Discarded. Nothing was sent.</div>';
+        }
+      }
+      el.innerHTML = h;
+      if (rich) {
+        el.onclick = (e) => {
+          if (!e.target.closest("button")) openReport();
+        };
+        el.querySelector(".subj").style.cursor = "pointer";
+      }
+      el.querySelectorAll("button").forEach((b) => b.onclick = (e) => {
+        e.stopPropagation();
+        const a = b.dataset.a;
+        if (a === "open") return openReport();
+        if (a === "approve-rich") return openReport();
+        if (a === "approve") {
+          s.status = "sent";
+          toast("Approved - sent to client (simulated)");
+        }
+        if (a === "edit") s.status = "editing";
+        if (a === "discard") s.status = "discarded";
+        if (a === "cancel") s.status = "pending";
+        if (a === "save") {
+          s.body = el.querySelector("textarea").value;
+          s.edited = true;
+          s.status = "pending";
+          toast("Changes saved. Ready for approval.");
+        }
+        persist();
+        renderMain();
+        renderSide();
+      });
+      return el;
+    }
+    function emailWsEl(k, dr, family) {
+      const s = get(k, dr), rich = k === reportKey;
+      if (!s.email) s.email = { to: dr.to, subject: dr.subject, body: s.body };
+      const sent = s.status === "sent", uid = "email-" + k;
+      const el = document.createElement("div");
+      el.className = "email-ws" + (sent ? " sent-ws" : "");
+      el.innerHTML = '<div class="ew-head"><span class="t">Email to ' + esc(dr.member) + '</span><span class="sh-status ' + (sent ? "is-sent" : "") + '">' + (sent ? "\u2713 Sent \xB7 simulated" : "Draft \xB7 ready for review") + '</span></div><div class="sh-profile">' + esc(dr.profile) + '</div><div class="ew-fields"><label for="' + uid + '-to">To</label><input data-field-email="to" id="' + uid + '-to" type="email" value="' + esc(s.email.to) + '"' + (sent ? " readonly" : "") + '><label for="' + uid + '-subject">Subject</label><input data-field-email="subject" id="' + uid + '-subject" type="text" value="' + esc(s.email.subject) + '"' + (sent ? " readonly" : "") + '><label for="' + uid + '-body">Message</label><textarea data-field-email="body" id="' + uid + '-body"' + (sent ? " readonly" : "") + ">" + esc(s.email.body) + "</textarea></div>" + (sent ? '<div class="ew-sent">\u2713 Marked as sent \xB7 update in their app (simulated). No real email was sent.</div>' : "") + '<div class="ew-actions"><button data-a="call">Call ' + esc(dr.member) + '</button><button data-a="meeting">Book a meeting</button><button data-a="plan">' + (rich ? "Open plan" : "View rationale") + '</button><button data-a="preview">Preview update</button><span class="grow"></span><button data-a="copy">Copy email</button>' + (sent ? "" : '<button data-a="marksent">Mark as sent</button>') + '<a class="sh-gmail" data-a="gmail" target="_blank" rel="noopener">Open in Gmail \u2197</a></div>';
+      const gmail = el.querySelector('[data-a="gmail"]');
+      function syncMailto() {
+        gmail.href = "mailto:" + encodeURIComponent(s.email.to) + "?subject=" + encodeURIComponent(s.email.subject) + "&body=" + encodeURIComponent(s.email.body);
+      }
+      syncMailto();
+      el.querySelectorAll("[data-field-email]").forEach((x) => x.addEventListener("input", () => {
+        s.email[x.dataset.fieldEmail] = x.value;
+        if (x.dataset.fieldEmail === "body") s.body = x.value;
+        syncMailto();
+        persist();
+      }));
+      el.querySelectorAll(".ew-actions button").forEach((b) => b.onclick = (ev) => {
+        ev.stopPropagation();
+        const a = b.dataset.a;
+        if (a === "call") toast("Call " + dr.member + " \xB7 demo only. No call was placed.");
+        if (a === "meeting") toast("Meeting request \xB7 demo only. Nothing was booked.");
+        if (a === "plan") {
+          if (rich) openReport();
+          else {
+            const reason = el.closest(".fam").querySelector(".reason");
+            reason.scrollIntoView({ behavior: "smooth", block: "center" });
+            reason.classList.add("sh-highlight");
+            setTimeout(() => reason.classList.remove("sh-highlight"), 1600);
+          }
+        }
+        if (a === "preview") {
+          if (rich) openPreview();
+          else openEmailPreview(s.email, dr.member);
+        }
+        if (a === "marksent") {
+          if (k === reportKey && dirty) {
+            toast("Save or discard your report changes before marking as sent.");
+            return;
+          }
+          s.status = "sent";
+          persist();
+          updateEditor();
+          renderMain();
+          renderSide();
+          renderClients();
+          toast("Marked as sent \xB7 simulated. No email left this page.");
+        }
+      });
+      mountEmailCopy(el, () => s.email.body, toast);
+      return el;
+    }
+    function openEmailPreview(email, member) {
+      const host = $("pmBody");
+      host.innerHTML = "";
+      const title = document.createElement("h3");
+      title.textContent = email.subject;
+      const meta = document.createElement("p");
+      meta.textContent = "To: " + email.to;
+      const body = document.createElement("div");
+      body.className = "sh-email-preview";
+      body.textContent = email.body;
+      host.append(meta, title, body);
+      $("pmodal").querySelector(".mh h3").textContent = "Email preview \xB7 " + member;
+      $("pmodal").classList.remove("hidden");
+      showDialog("pmodal");
+    }
+    function clientEntries() {
+      const names = [...new Set(D.events.flatMap((e) => [...e.affected, ...e.notAffected].map((f) => f.family)))];
+      return names.map((name) => {
+        const matches = [];
+        D.events.forEach((e, ei) => e.affected.forEach((f, fi) => {
+          if (f.family === name) matches.push({ ei, fi, f, e });
+        }));
+        const autos = AUTO.filter((a) => a.family === name);
+        return { name, matches, autos, search: [name, ...matches.map((m) => m.e.title + " " + m.f.drafts.map((d) => d.subject + " " + d.member).join(" ")), ...autos.map((a) => a.type), "email"].join(" ").toLowerCase() };
+      });
+    }
+    function matchingClients() {
+      const q = searchQuery.toLowerCase().trim();
+      return clientEntries().filter((c) => !q || c.search.includes(q));
+    }
+    function markName(name) {
+      const q = searchQuery.trim(), i = name.toLowerCase().indexOf(q.toLowerCase());
+      if (!q || i < 0) return esc(name);
+      return esc(name.slice(0, i)) + "<mark>" + esc(name.slice(i, i + q.length)) + "</mark>" + esc(name.slice(i + q.length));
+    }
+    function renderClients() {
+      const matches = matchingClients(), host = $("clientCards");
+      host.innerHTML = "";
+      matches.forEach((c) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "sh-client-card" + (activeClient === c.name ? " is-active" : "");
+        btn.setAttribute("aria-label", "Open " + c.name);
+        btn.setAttribute("aria-pressed", String(activeClient === c.name));
+        const drafts = c.matches.flatMap((m) => m.f.drafts.map((dr, di) => get(m.e.id + "-" + m.fi + "-" + di, dr)));
+        const pending = drafts.filter((s) => s.status !== "sent").length;
+        btn.innerHTML = '<span class="sh-avatar">' + esc(c.name.split(" ").filter((x) => x !== "&").map((x) => x[0]).slice(0, 2).join("")) + '</span><span class="sh-card-name">' + markName(c.name) + '</span><span class="sh-card-detail">' + (drafts.length ? pending + " draft" + (pending === 1 ? "" : "s") + " to review" : "No action needed") + '</span><span class="sh-card-type">' + (c.matches.length ? esc(c.matches[0].e.id === "market" ? "Market update" : "Social Security \xB7 report") : "Plan on track") + '</span><span class="sh-card-open">Open workspace \u2192</span>';
+        btn.onclick = () => selectClient(c);
+        host.appendChild(btn);
+      });
+      $("searchCount").textContent = matches.length + " of " + clientEntries().length + " families";
+      $("searchEmpty").classList.toggle("hidden", matches.length > 0);
+    }
+    function selectClient(c) {
+      if (dirty) {
+        toast("Save or discard your report changes first.");
+        return;
+      }
+      activeClient = c.name;
+      cur = c.matches[0]?.ei ?? 0;
+      editor.classList.add("hidden");
+      renderSide();
+      renderMain();
+      renderClients();
+      requestAnimationFrame(() => {
+        const target = main.querySelector(".fam");
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+          target.focus({ preventScroll: true });
+        }
+      });
+    }
+    $("clientSearch").addEventListener("input", (e) => {
+      searchQuery = e.target.value;
+      renderClients();
+    });
+    $("clientSearch").addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        const c = matchingClients()[0];
+        if (c) selectClient(c);
+      }
+    });
+    $("clearSearch").onclick = () => {
+      searchQuery = "";
+      $("clientSearch").value = "";
+      renderClients();
+      $("clientSearch").focus();
+    };
+    function showDialog(id) {
+      const d = $(id);
+      const r = document.activeElement?.getBoundingClientRect();
+      d.style.setProperty("top", Math.max(16, (r ? r.top : 600) + window.scrollY - 600) + "px", "important");
+      d.showModal();
+    }
+    function openPreview() {
+      $("pmodal").querySelector(".mh h3").textContent = "How Samantha will see this update";
+      const srcEl = document.querySelector("#editor .fentry");
+      if (!srcEl) return;
+      const clone = srcEl.cloneNode(true);
+      clone.querySelectorAll("[contenteditable]").forEach((x) => x.removeAttribute("contenteditable"));
+      clone.querySelectorAll('[role="textbox"]').forEach((x) => {
+        x.removeAttribute("role");
+        x.removeAttribute("aria-label");
+        x.removeAttribute("tabindex");
+      });
+      clone.querySelectorAll("[data-changed]").forEach((x) => x.removeAttribute("data-changed"));
+      const host = $("pmBody");
+      host.innerHTML = "";
+      const wrap = document.createElement("div");
+      wrap.className = "client-report";
+      const feed = document.createElement("div");
+      feed.className = "feed";
+      feed.appendChild(clone);
+      wrap.appendChild(feed);
+      host.appendChild(wrap);
+      $("pmodal").classList.remove("hidden");
+      showDialog("pmodal");
+    }
+    function closePreview() {
+      $("pmodal").close();
+      $("pmodal").classList.add("hidden");
+    }
+    function renderMain() {
+      if (main.contains(editor)) document.querySelector(".sherpas-embed").appendChild(editor);
+      const e = D.events[cur];
+      main.innerHTML = '<div class="sh-path">Clients <span>\u203A</span> ' + esc(activeClient || "All affected families") + ' <span>\u203A</span> Review workspace</div><span class="badge ' + e.cls + '">' + e.priority + '</span><h1 style="margin-top:8px">' + esc(e.title) + '</h1><p class="sub">' + esc(e.summary) + '</p><div class="sec-row"><div class="sec">' + (activeClient ? "Client workspace" : "Affected families (" + e.affected.length + ")") + '</div><span class="demo-label">Demo \xB7 no real sending</span></div>';
+      e.affected.forEach((f, fi) => {
+        if (activeClient && activeClient !== f.family) return;
+        const c = document.createElement("div");
+        c.className = "fam";
+        c.tabIndex = -1;
+        c.dataset.family = f.family;
+        c.innerHTML = '<div class="sh-family-heading"><h3>' + esc(f.family) + '</h3><button class="sh-back-clients" type="button">\u2191 Find another client</button></div><div class="reason">' + esc(f.reason) + "</div>";
+        c.querySelector(".sh-back-clients").onclick = () => {
+          $("clientSearch").scrollIntoView({ behavior: "smooth", block: "center" });
+          $("clientSearch").focus({ preventScroll: true });
+        };
+        f.drafts.forEach((dr, di) => {
+          const k = e.id + "-" + fi + "-" + di;
+          if (k === reportKey) c.appendChild(draftEl(k, dr));
+          c.appendChild(emailWsEl(k, dr, f.family));
+        });
+        main.appendChild(c);
+      });
+      const unaffected = e.notAffected.filter((f) => !activeClient || activeClient === f.family);
+      if (unaffected.length) {
+        const t = document.createElement("div");
+        t.className = "sec";
+        t.textContent = "Not affected \xB7 no message needed";
+        main.appendChild(t);
+      }
+      unaffected.forEach((f) => {
+        const c = document.createElement("div");
+        c.className = "fam na";
+        c.tabIndex = -1;
+        c.dataset.family = f.family;
+        c.innerHTML = "<h3>" + esc(f.family) + '</h3><div class="tag">No action \xB7 not affected</div><div>' + esc(f.reason) + '</div><p class="sh-muted">No event email was generated. The automatic relationship messages remain in the sidebar.</p>';
+        main.appendChild(c);
+      });
+      const n = document.createElement("div");
+      n.className = "note";
+      n.textContent = "Hackathon prototype \xB7 Case scenarios, not live financial data. Sending, calls and bookings are simulated. Edits last for this session only.";
+      main.appendChild(n);
+      if (!editor.classList.contains("hidden") && activeClient === "Samantha Lewis" && cur === 0) main.querySelector(".fam")?.appendChild(editor);
+      const sent = Object.values(state).filter((x) => x.status === "sent").length;
+      $("counter").textContent = D.stats + (sent ? " \xB7 " + sent + " approved" : "");
+    }
+    function loadReport() {
+      fields.forEach((x, i) => {
+        x.textContent = report[x.dataset.field] ?? defaults[i];
+        x.removeAttribute("data-changed");
+      });
+      dirty = false;
+      updateEditor();
+    }
+    function updateEditor() {
+      const sent = get(reportKey).status === "sent";
+      fields.forEach((x) => x.contentEditable = sent ? "false" : "true");
+      $("modeChip").textContent = sent ? "Client view - approved report" : "Client view - editable draft";
+      $("editStatus").textContent = sent ? "Approved - sent to client (simulated)" : dirty ? "Unsaved changes" : "All changes saved";
+      $("saveChanges").disabled = sent || !dirty;
+      $("discardChanges").disabled = sent || !dirty;
+      $("approveReport").disabled = sent || dirty;
+      $("approveReport").textContent = sent ? "\u2713 Approved & sent" : "Approve & send";
+      $("approveReport").title = dirty ? "Save or discard your changes before approving" : "";
+      $("reportHelp").textContent = sent ? "Read-only sent report \xB7 Delivery simulated. No real message was sent." : "Client layout \xB7 Click any outlined text to edit. Sending is simulated.";
+    }
+    function openReport() {
+      if (activeClient !== "Samantha Lewis" || cur !== 0) {
+        activeClient = "Samantha Lewis";
+        cur = 0;
+        renderMain();
+        renderSide();
+        renderClients();
+      }
+      loadReport();
+      const family = main.querySelector(".fam");
+      family.appendChild(editor);
+      editor.classList.remove("hidden");
+      editor.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+    function saveReport() {
+      fields.forEach((x) => {
+        report[x.dataset.field] = x.textContent.trim();
+        x.textContent = report[x.dataset.field];
+        x.removeAttribute("data-changed");
+      });
+      dirty = false;
+      get(reportKey).edited = true;
+      persist();
+      updateEditor();
+      renderMain();
+      toast("Changes saved. Client report updated.");
+    }
+    fields.forEach((x) => {
+      x.addEventListener("input", () => {
+        dirty = fields.some((f, i) => f.textContent !== (report[f.dataset.field] ?? defaults[i]));
+        x.dataset.changed = "true";
+        updateEditor();
+      });
+      x.addEventListener("paste", (e) => {
+        e.preventDefault();
+        document.execCommand("insertText", false, e.clipboardData.getData("text/plain"));
+      });
+      x.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          x.blur();
+        }
+      });
+    });
+    $("saveChanges").onclick = saveReport;
+    $("discardChanges").onclick = () => {
+      loadReport();
+      toast("Unsaved changes discarded. Saved draft restored.");
+    };
+    $("approveReport").onclick = () => {
+      if (dirty || get(reportKey).status === "sent") return;
+      get(reportKey).status = "sent";
+      persist();
+      updateEditor();
+      renderMain();
+      renderSide();
+      toast("Approved - sent to client (simulated)");
+    };
+    $("back").onclick = () => {
+      if (dirty) {
+        toast("Save or discard your changes before returning.");
+        return;
+      }
+      loadReport();
+      editor.classList.add("hidden");
+      main.querySelector(".email-ws")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    };
+    $("topOpen").onclick = openReport;
+    window.addEventListener("beforeunload", (e) => {
+      if (dirty) {
+        e.preventDefault();
+        e.returnValue = "";
+      }
+    });
+    const AUTO = [
+      {
+        family: "Samantha Lewis",
+        type: "Thanksgiving greeting",
+        date: "Nov 19, 2026",
+        to: "samantha.lewis@email.com",
+        body: "Hi Samantha,\n\nAhead of Thanksgiving, a short note to say how glad I am to be working with you and the kids this year.\n\nI hope the holiday gives you all a real break together. No numbers, no to-dos, just gratitude.\n\nWarmly,\nAlex"
+      },
+      {
+        family: "Timothy & Melanie Weah",
+        type: "Holiday season greeting",
+        date: "Nov 20, 2026",
+        to: "timothy.weah@email.com",
+        body: "Hi Timothy and Melanie,\n\nAs the year winds down, a quick note to wish you, Liam and Josh a warm holiday season and a great start to the new year.\n\nEverything in your plan is where it should be. Enjoy the time together, and we will talk in January.\n\nWarmly,\nAlex"
+      },
+      {
+        family: "Daniel & Emily Johnson",
+        type: "Tax season reminder",
+        date: "Nov 12, 2026",
+        to: "emily.johnson@email.com",
+        body: "Hi Emily,\n\nA gentle early heads-up: tax season will be here before we know it. Over the next weeks it helps to set aside any donation receipts and 529 contribution statements as they arrive.\n\nNo action needed now. I will send your full document checklist in January, as usual.\n\nWarmly,\nAlex"
+      },
+      {
+        family: "Samantha Lewis",
+        type: "Birthday",
+        date: "Oct 14, 2026",
+        to: "samantha.lewis@email.com",
+        body: "Happy birthday, Samantha!\n\nWishing you a wonderful day with the kids. It has been a big year and you have handled it beautifully.\n\nWarmly,\nAlex"
+      },
+      {
+        family: "Michael Carter",
+        type: "Quarterly check-in",
+        date: "Sep 9, 2026",
+        to: "michael.carter@email.com",
+        body: "Hi Michael,\n\nQuarterly check-in: your plan is on track. Savings rate, portfolio drift and your January 2027 down-payment fund all look the way we set them up.\n\nNothing to do on your side. If anything in life has changed, just reply and we will adjust.\n\nBest,\nAlex"
+      }
+    ];
+    const monthCount = AUTO.filter((m) => m.date.indexOf("Nov") === 0).length;
+    $("autoCount").textContent = monthCount + " sent automatically this month";
+    function renderAuto() {
+      const list = $("autolist");
+      list.innerHTML = "";
+      AUTO.forEach((m, i) => {
+        const d = document.createElement("div");
+        d.className = "am";
+        d.innerHTML = '<div class="f">' + esc(m.family) + '</div><div class="ty">' + esc(m.type) + '</div><div class="row"><span class="chip-auto">Sent automatically</span><span class="dt">' + esc(m.date) + '</span></div><div class="btns"><button data-a="view">View</button></div>';
+        d.querySelector("button").onclick = () => openAuto(i);
+        list.appendChild(d);
+      });
+    }
+    function openAuto(i) {
+      const m = AUTO[i];
+      $("amTitle").textContent = m.type + " \xB7 " + m.family;
+      $("amMeta").textContent = "To: " + m.to + " \xB7 Sent " + m.date;
+      $("amBody").textContent = m.body;
+      $("amodal").classList.remove("hidden");
+      showDialog("amodal");
+    }
+    function closeAuto() {
+      $("amodal").close();
+      $("amodal").classList.add("hidden");
+    }
+    $("amClose").onclick = closeAuto;
+    $("amOk").onclick = closeAuto;
+    $("amodal").onclick = (e) => {
+      if (e.target.id === "amodal") closeAuto();
+    };
+    $("amRecall").onclick = () => toast("Recall simulated. In production this would retract the message.");
+    $("pmClose").onclick = closePreview;
+    $("pmOk").onclick = closePreview;
+    $("pmodal").onclick = (e) => {
+      if (e.target.id === "pmodal") closePreview();
+    };
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        closeAuto();
+        closePreview();
+      }
+    });
+    renderAuto();
+    renderSide();
+    renderMain();
+    renderClients();
+  })();
+}
+runPageScripts();
+</script></body></html>

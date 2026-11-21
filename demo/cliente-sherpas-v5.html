@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sherpas · Your plan</title>
+<style>
+:root{
+  --ink:#111827; --mute:#6b7280; --line:#e5e7eb; --bg:#f9fafb;
+  --active:#2f6df6; --score-bg:#e7eafa; --orange:#f59e42; --green:#1f8a5b;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:#fff;color:var(--ink);font-size:14px;line-height:1.55}
+.hidden{display:none!important}
+a{text-decoration:none;color:inherit}
+
+/* ============ SCREEN 1: GMAIL ============ */
+.gm{background:#f6f8fc;min-height:100vh}
+.gtop{height:60px;display:flex;align-items:center;padding:0 18px;gap:20px}
+.glogo{font-size:20px;color:#5f6368}.glogo b{color:#c5221f}
+.gsearch{flex:1;max-width:620px;background:#eaf1fb;border-radius:24px;padding:10px 18px;color:#5f6368}
+.gwrap{display:flex}
+.gside{width:210px;padding:8px 12px;color:#3c4043;flex-shrink:0}
+.gcomp{background:#c2e7ff;border-radius:16px;padding:14px 22px;font-weight:600;display:inline-block;margin:6px 0 14px}
+.gside div.i{padding:6px 14px;border-radius:0 16px 16px 0}
+.gside div.i.a{background:#d3e3fd;font-weight:700}
+.gmail{flex:1;background:#fff;border-radius:16px;margin:0 16px 16px 0;padding:26px 38px;min-height:600px}
+.gmail h2{font-weight:400;font-size:22px;margin:0 0 18px}
+.gh{display:flex;gap:12px;align-items:center;margin-bottom:20px}
+.av{width:40px;height:40px;border-radius:50%;background:#1b7a8c;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700}
+.gh .n{font-weight:600}.gh .e{color:#5f6368;font-size:12px}.gh .d{margin-left:auto;color:#5f6368;font-size:12px}
+.mbody{max-width:640px;font-size:14.5px;line-height:1.65;white-space:pre-wrap}
+.cta{display:inline-block;background:#0f4c5c;color:#fff!important;padding:12px 24px;border-radius:8px;font-weight:600;margin:8px 0 18px;cursor:pointer}
+.cta:hover{background:#0b3a46}
+
+/* ============ SCREEN 2: SHERPAS PLAN (clone) ============ */
+.sh{background:var(--bg);min-height:100vh}
+.sheader{height:64px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 28px;position:sticky;top:0;z-index:10}
+.slogo{font-size:22px;font-weight:800;letter-spacing:-.5px;color:#000;font-style:normal}
+.stabs{position:absolute;left:50%;transform:translateX(-50%);display:flex;gap:34px;height:64px}
+.stab{display:flex;align-items:center;font-size:14px;color:var(--mute);cursor:pointer;height:64px}
+.stab.on{color:#000;font-weight:600;border-bottom:2px solid #000}
+.slayout{display:flex;max-width:1280px;margin:0 auto}
+.sside{width:230px;flex-shrink:0;padding:26px 0 26px 28px}
+.snav-h{font-size:14px;font-weight:700;color:#000;margin:0 0 12px}
+.snav{list-style:none;margin:0 0 26px;padding:0}
+.snav li{padding:7px 0 7px 14px;font-size:13.5px;color:#4b5563;border-left:2px solid transparent;cursor:pointer}
+.snav li:hover{color:#000}
+.snav li.on{color:var(--active);border-left-color:var(--active);font-weight:500}
+.snav li .bdg{display:inline-block;min-width:18px;height:18px;line-height:18px;text-align:center;background:#e02424;color:#fff;border-radius:9px;font-size:11px;font-weight:700;padding:0 5px;margin-left:7px;vertical-align:1px}
+#navReport{display:flex;justify-content:space-between;align-items:center;gap:8px}
+#navReport .bdg{margin-left:0;flex-shrink:0}
+.smain{flex:1;padding:26px 40px 60px;min-width:0}
+
+/* score hero */
+.score{background:var(--score-bg);border-radius:14px;padding:34px 38px;margin-bottom:10px}
+.score h1{margin:0 0 14px;font-size:34px;font-weight:800;letter-spacing:-.5px;color:#000}
+.score h1 .n{color:var(--orange)}
+.score p{margin:0;font-size:14px;color:#374151;max-width:900px}
+.fine{font-size:11.5px;font-style:italic;color:#9ca3af;margin:0 2px 26px}
+
+h2.stitle{font-size:26px;font-weight:800;letter-spacing:-.3px;margin:6px 0 18px;color:#000}
+.cards4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px}
+.kcard{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px}
+.kcard svg{width:22px;height:22px;stroke:#374151;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round;margin-bottom:12px;display:block}
+.kcard .kl{font-weight:700;font-size:13.5px;margin-bottom:6px}
+.kcard .kv{font-size:13px;color:#4b5563}
+ul.bullets{margin:0;padding-left:22px}
+ul.bullets li{margin-bottom:14px;font-size:13.5px;color:#1f2937;max-width:980px}
+
+/* report view */
+.rbanner{display:flex;align-items:center;gap:10px;background:#e8f5ee;border:1px solid #bfe3cf;color:#1c6b49;padding:12px 16px;border-radius:10px;font-weight:600;font-size:13.5px;margin-bottom:20px}
+.rcard{background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px 26px;margin-bottom:18px}
+.rcard h3{margin:0 0 14px;font-size:17px;font-weight:700}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px}
+.kpi{background:var(--score-bg);border-radius:10px;padding:14px 16px}
+.kpi .v{font-size:24px;font-weight:800;color:#000;letter-spacing:-.5px}
+.kpi .l{font-size:12px;color:#4b5563;margin-top:2px}
+ul.k{margin:6px 0 0;padding-left:20px}ul.k li{margin-bottom:8px;font-size:13.5px;color:#1f2937}
+.goal{border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-bottom:12px}
+.goal:last-child{margin-bottom:0}
+.goal .gt{display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:14px}
+.imp{font-size:11px;font-weight:700;padding:3px 10px;border-radius:10px;background:#e3f4ec;color:var(--green)}
+.imp.warn{background:#fdf1d8;color:#b7791f}
+.goal .gd{color:#4b5563;margin-top:6px;font-size:13px}
+.rmeta{color:var(--mute);font-size:13px;margin:0 0 18px}
+.backlink{font-size:12.5px;color:var(--mute);cursor:pointer}
+.backlink:hover{color:#000}
+
+/* toast notification */
+.toast{position:fixed;top:76px;right:22px;z-index:100;width:360px;max-width:calc(100vw - 40px);background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 12px 32px rgba(17,24,39,.18),0 2px 8px rgba(17,24,39,.08);padding:14px 16px;display:flex;gap:12px;align-items:flex-start;cursor:pointer;transform:translateX(calc(100% + 30px));opacity:0;transition:transform .45s cubic-bezier(.2,.9,.25,1),opacity .45s ease}
+.toast.show{transform:translateX(0);opacity:1}
+.toast:hover{border-color:#cbd5e1}
+.toast .tav{width:40px;height:40px;border-radius:50%;background:#1b7a8c;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0;position:relative}
+.toast .tav .bell{position:absolute;top:-6px;right:-6px;width:18px;height:18px;border-radius:50%;background:#e02424;display:flex;align-items:center;justify-content:center;animation:ring 1.2s ease-in-out 3}
+.toast .tav .bell svg{width:10px;height:10px;stroke:#fff;stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+@keyframes ring{0%,100%{transform:rotate(0)}15%{transform:rotate(16deg)}30%{transform:rotate(-14deg)}45%{transform:rotate(10deg)}60%{transform:rotate(-7deg)}75%{transform:rotate(3deg)}}
+.toast .tt{flex:1;min-width:0}
+.toast .t1{font-size:11px;font-weight:600;color:var(--mute);text-transform:uppercase;letter-spacing:.4px;margin-bottom:2px}
+.toast .t2{font-size:14px;font-weight:700;color:#111827;line-height:1.3}
+.toast .t3{font-size:12.5px;color:#4b5563;margin-top:2px}
+.toast .tx{color:#9ca3af;font-size:16px;line-height:1;padding:2px 4px;flex-shrink:0}
+.toast .tx:hover{color:#111827}
+
+
+/* ===== v4 feed ===== */
+.feed{position:relative;padding-left:34px;margin-top:6px}
+.feed:before{content:"";position:absolute;left:11px;top:14px;bottom:20px;width:2px;background:linear-gradient(#a5b4fc,#e5e7eb 30%)}
+.fdate{position:relative;font-size:12px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--mute);margin:0 0 10px}
+.fdate:before{content:"";position:absolute;left:-30px;top:2px;width:14px;height:14px;border-radius:50%;background:#fff;border:3px solid #c7cdf0}
+.fdate.now{color:#4338ca}.fdate.now:before{background:#4f46e5;border-color:#c7d2fe;box-shadow:0 0 0 5px rgba(79,70,229,.15)}
+.fdate .today{background:#4f46e5;color:#fff;border-radius:9px;padding:2px 9px;margin-left:8px;font-size:10.5px;letter-spacing:.3px}
+.fentry{margin-bottom:28px}
+.hero{background:#fff;border:1px solid #d9dcf5;border-radius:18px;box-shadow:0 10px 30px rgba(79,70,229,.10);overflow:hidden}
+.hhead{background:linear-gradient(120deg,#e7eafa,#efeaff);padding:22px 26px;display:flex;gap:16px;align-items:center}
+.hhead .hav{width:48px;height:48px;border-radius:50%;background:#1b7a8c;color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.hhead h3{margin:0;font-size:21px;font-weight:800;letter-spacing:-.3px;color:#000;line-height:1.25}
+.hhead .sub{font-size:12.5px;color:#4b5563;margin-top:3px}
+.chip{display:inline-block;font-size:11px;font-weight:700;padding:3px 10px;border-radius:10px;background:#fff;color:#4338ca;border:1px solid #c7d2fe;margin-right:6px}
+.chip.g{color:var(--green);border-color:#bfe3cf;background:#e8f5ee}
+.hbody{padding:6px 26px 26px}
+.blk{margin-top:22px}
+.bh{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.bi{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.bi svg{width:18px;height:18px;stroke:#fff;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.bi.b1{background:#4f46e5}.bi.b2{background:var(--orange)}.bi.b3{background:var(--green)}
+.bh h4{margin:0;font-size:16px;font-weight:800}.bh .n{font-size:11px;font-weight:700;color:var(--mute);margin-left:auto;text-transform:uppercase;letter-spacing:.4px}
+.rise{display:flex;align-items:center;gap:14px;background:#faf9ff;border:1px solid #e4e1fb;border-radius:12px;padding:14px 18px;margin-bottom:14px;flex-wrap:wrap}
+.rise .f{font-size:13px;color:#4b5563}.rise .f b{display:block;font-size:22px;color:#000;letter-spacing:-.5px}
+.rise .arrow{font-size:20px;color:#4f46e5}
+.rise .pill{margin-left:auto;text-align:right;font-size:12.5px;color:#4b5563}
+.rise .pill span{display:inline-block;background:#4f46e5;color:#fff;font-weight:700;border-radius:10px;padding:3px 11px;margin-bottom:3px;font-size:12.5px}
+.goals{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.goals .goal{margin:0;border-top:3px solid #34d399;background:#fff}
+.goals .goal.w{border-top-color:#f59e42;background:#fffbf3}
+.goals .gi{font-size:22px;margin-bottom:4px}
+.goals .gt{margin-bottom:2px}
+.opts{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.opt{text-align:left;font:inherit;background:#fff;border:1.5px solid #d9dcf5;border-radius:14px;padding:16px;cursor:pointer;transition:.15s;display:block;width:100%;color:var(--ink)}
+.opt:hover{border-color:#4f46e5;box-shadow:0 6px 16px rgba(79,70,229,.14);transform:translateY(-1px)}
+.opt .oi{font-size:22px;display:block;margin-bottom:6px}
+.opt .ot{font-weight:700;font-size:14px;display:block;margin-bottom:3px}
+.opt .od{font-size:12.5px;color:#4b5563;display:block}
+.opt .go{display:inline-block;margin-top:10px;font-size:12px;font-weight:700;color:#4f46e5}
+.opt.done{background:#e8f5ee;border-color:#34d399;cursor:default;transform:none;box-shadow:none}
+.opt.done .go{color:var(--green)}
+.opt.dim{opacity:.5}
+.optmsg{margin-top:12px;font-size:13px;color:#1c6b49;font-weight:600;min-height:20px}
+.small{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 18px;cursor:pointer}
+.small:hover{border-color:#c7cdf0}
+.small .sh1{display:flex;align-items:center;gap:10px;font-weight:700;font-size:14px}
+.small .sh1 .e{font-size:18px}.small .sh1 .tg{margin-left:auto;color:#9ca3af;font-size:12px;font-weight:600}
+.small .sbody{display:none;margin-top:10px;font-size:13px;color:#374151;padding-left:28px}
+.small.open .sbody{display:block}
+.small .pv{font-size:12.5px;color:var(--mute);margin-top:2px;padding-left:28px}
+.small.open .pv{display:none}
+.fyi{font-size:12px;color:var(--mute);text-align:center;margin:-8px 0 20px}
+@media(max-width:1000px){.goals,.opts{grid-template-columns:1fr}}
+
+@media(max-width:1000px){.cards4{grid-template-columns:repeat(2,1fr)}.kpis{grid-template-columns:1fr}.sside{display:none}.stabs{position:static;transform:none;margin-left:30px}.gside{display:none}}
+
+/* Current report disclosure, consistent with the timeline cards. */
+.hero > summary{list-style:none;cursor:pointer;position:relative;flex-wrap:wrap;min-height:64px}
+.hero > summary::-webkit-details-marker{display:none}
+.hero > summary:focus-visible{outline:3px solid #4f46e5;outline-offset:-4px}
+.hero > summary > div:nth-child(2){flex:1;min-width:0}
+.report-toggle{display:flex;align-items:center;gap:8px;flex-basis:100%;padding-left:64px;color:#4338ca;font-size:12px;font-weight:700;min-height:28px}
+.report-chevron{font-size:21px;line-height:1;transform:rotate(180deg)}
+.hero:not([open]) .report-chevron{transform:none}
+.hero[open] .when-closed,.hero:not([open]) .when-open{display:none}
+@media(max-width:600px){.report-toggle{padding-left:0}.hero > summary{gap:10px}.hero > summary .hav{width:38px;height:38px}.hero > summary h3{font-size:18px}}
+@media(max-width:600px){.hero > summary .hav{display:none}.hero > summary{padding:18px 16px}.hero > summary > div:nth-child(2){flex-basis:100%}}
+</style>
+</head>
+<body>
+
+<!-- ================= SCREEN 1 : EMAIL ================= -->
+<div id="mail" class="gm">
+  <div class="gtop"><div class="glogo"><b>M</b> Mail</div><div class="gsearch">Search mail</div></div>
+  <div class="gwrap">
+    <div class="gside"><div class="gcomp">+ Compose</div><div class="i a">Inbox &nbsp; 1</div><div class="i">Starred</div><div class="i">Sent</div><div class="i">Drafts</div></div>
+    <div class="gmail">
+      <h2>The 2027 Social Security change: about $484 more for you, nothing to fix</h2>
+      <div class="gh"><div class="av">AM</div><div><div class="n">Alex Morgan <span style="font-weight:400;color:#5f6368">· Sherpas advisor</span></div><div class="e">to me</div></div><div class="d">Nov 21, 9:12 AM</div></div>
+      <div class="mbody">Hi Samantha,
+
+You may have seen headlines about the Social Security wage base going up in 2027. I wanted you to hear it from me, with your own numbers.
+
+The cap on wages that Social Security tax applies to moves from $184,500 to $192,300. Your $250,000 salary is above both, so you will pay 6.2% on the extra $7,800: about <b>$484 more next year</b>, roughly $40 a month.
+
+I checked it against your plan. It does not change Ethan's August 2027 payment of $12,500, Ava's start in 2028 or the 2030 home purchase. It does add a little to a yearly cash flow we are already watching, so I will fold it into our next review. One small offset: the single-filer standard deduction rises $500, to $16,600.
+
+You don't need to do anything. I put the figures, and what they mean for the kids' college and the house, in your family report.</div>
+      <a class="cta" id="openPlan">View your family report</a>
+      <div class="mbody" style="color:#444">Warmly,
+Alex
+
+Alex Morgan · Your Sherpas advisor</div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= SCREEN 2 : SHERPAS PLAN ================= -->
+<div id="plan" class="sh hidden">
+  <div class="sheader">
+    <div class="slogo">sherpas</div>
+    <div class="stabs"><div class="stab on">Advice</div><div class="stab">Living map</div></div>
+  </div>
+  <div class="slayout">
+    <aside class="sside">
+      <p class="snav-h">Financial health</p>
+      <ul class="snav">
+        <li data-view="summary" class="on">Summary</li>
+        <li data-view="summary">Retirement &amp; Goals</li>
+        <li data-view="summary">Assets &amp; Investments</li>
+        <li data-view="summary">Debt management</li>
+        <li data-view="summary">Savings &amp; Expenses</li>
+        <li data-view="summary">Insurance &amp; Protection</li>
+      </ul>
+      <p class="snav-h">Investment analysis</p>
+      <p class="snav-h" style="margin-top:26px">Advisor updates</p>
+      <ul class="snav">
+        <li data-view="report" id="navReport">Messages from your advisor <span class="bdg" id="bdg" style="display:none">1</span></li>
+      </ul>
+    </aside>
+
+    <main class="smain">
+      <!-- ======= default plan summary (real page data) ======= -->
+      <section id="view-summary">
+        <div class="score">
+          <h1>Your Financial Health Score is: <span class="n">60</span></h1>
+          <p>Your score of 60 suggests that while you manage to get by, you aren't thriving financially, often leading to stress and financial disorganization. Enhancing your financial health and creating a strategic plan could unlock your money's potential and help you gain control of your desired life.</p>
+        </div>
+        <p class="fine">Rules-based diagnostic from provided data and assumptions; may vary with inputs. Does not measure investment performance or predict outcomes.</p>
+
+        <h2 class="stitle">Summary</h2>
+        <div class="cards4">
+          <div class="kcard">
+            <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <div class="kl">Household</div>
+            <div class="kv">Timothy (40)</div>
+            <div class="kv">Melanie (38)</div>
+          </div>
+          <div class="kcard">
+            <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+            <div class="kl">Income</div>
+            <div class="kv">Timothy $150K</div>
+            <div class="kv">Melanie $120K</div>
+          </div>
+          <div class="kcard">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 6v2m0 8v2"/></svg>
+            <div class="kl">Net worth</div>
+            <div class="kv">$696K total</div>
+            <div class="kv">$210K investable assets</div>
+          </div>
+          <div class="kcard">
+            <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+            <div class="kl">Debt</div>
+            <div class="kv">$93K balance</div>
+            <div class="kv">$3K monthly payment</div>
+          </div>
+        </div>
+        <ul class="bullets">
+          <li>You earn $270,000 a year together and have $728,500 in equity, yet only $210,000 is in investable assets. Another $150,000 sits in cash, and your home makes up 44% of your total assets.</li>
+          <li>Your retirement plan is a real strength. As a projection to age 91, income covers 93% of your yearly spending need, you capture both full employer matches, and your savings never run out in the plan.</li>
+          <li>Your cash is also a strength: $150,800 covers about 16 months of essentials, against the 8 to 9 months recommended. About $60,223 sits above that reserve and your near-term goals.</li>
+          <li>The central tension is that this spare cash sits idle while protection is open. Timothy has $140,000 of life insurance against a $750,000 recommended minimum. Melanie has $110,000 against $600,000. You have no umbrella policy, a $1,000,000 gap, and an $18,000 card balance at 18%.</li>
+          <li>Education is the other open need. You have $0 in 529s, and about $113,509 of college funding is still needed, or roughly $4,609 more saved each year. Liam starts college in 2038 and Josh in 2041.</li>
+        </ul>
+      </section>
+
+      <!-- ======= advisor report ======= -->
+      <section id="view-report" class="hidden">
+        <h2 class="stitle">Messages from your advisor</h2>
+        <p class="rmeta">Prepared for Samantha Lewis · your advisor's timeline</p>
+        <div class="rbanner">✓&nbsp; Reviewed by your advisor, Alex Morgan</div>
+
+        <div class="feed">
+          <div class="fentry">
+            <div class="fdate now">Nov 21, 2026 <span class="today">TODAY</span></div>
+            <details class="hero" id="currentReport" open>
+              <summary class="hhead">
+                <div class="hav">AM</div>
+                <div>
+                  <div style="margin-bottom:6px"><span class="chip">Family report</span><span class="chip g">✓ Reviewed</span></div>
+                  <h3>The 2027 Social Security wage base: about $484 more, nothing to fix</h3>
+                  <div class="sub">From Alex Morgan · event: 2027 Social Security wage base</div>
+                </div>
+              <span class="report-toggle"><span class="when-open">Collapse report</span><span class="when-closed">Expand report</span><span class="report-chevron" aria-hidden="true">⌄</span></span></summary>
+              <div class="hbody">
+                <div class="blk">
+                  <div class="bh"><span class="bi b1"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></span><h4>What happened</h4><span class="n">1 of 3</span></div>
+                  <div class="rise">
+                    <div class="f">2026 wage base<b>$184,500</b></div><div class="arrow">→</div><div class="f">2027 wage base<b>$192,300</b></div>
+                    <div class="pill"><span>6.2% tax rate applies</span><br>Effective Jan 1, 2027</div>
+                  </div>
+                  <div class="kpis">
+                    <div class="kpi"><div class="v">$192,300</div><div class="l">2027 wage base (from $184,500)</div></div>
+                    <div class="kpi"><div class="v">+$484</div><div class="l">your extra Social Security tax in 2027, about $40 a month</div></div>
+                    <div class="kpi"><div class="v">+$500</div><div class="l">standard deduction, single: $16,100 → $16,600</div></div>
+                  </div>
+                  <ul class="k">
+                    <li>Social Security tax is 6.2% on wages up to the wage base. Your $250,000 salary is above it in both years.</li>
+                    <li>The base rises by $7,800, so 6.2% of that is about $484.</li>
+                  </ul>
+                </div>
+                <div class="blk">
+                  <div class="bh"><span class="bi b2"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/></svg></span><h4>How it affects you</h4><span class="n">2 of 3</span></div>
+                  <div class="goals">
+                    <div class="goal"><div class="gi"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#4f46e5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></div><div class="gt"><span>Ethan and Ava's college</span><span class="imp">Low impact</span></div><div class="gd">Ethan's $12,500 is due Aug 2027, Ava starts Aug 2028. $98,838 of $100,000 is still unfunded, with $0 in 529s. The $484 is small next to that gap, but it comes from the same cash.</div></div>
+                    <div class="goal"><div class="gi"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#4f46e5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg></div><div class="gt"><span>Second home, 2030</span><span class="imp">Low impact</span></div><div class="gd">$500,000 purchase (about $562,754 by 2030), $112,551 down. The date does not move. Cash is $750 above reserve, so we keep watching it.</div></div>
+                    <div class="goal w"><div class="gi"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#f59e42" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></div><div class="gt"><span>Yearly cash flow</span><span class="imp warn">Watch</span></div><div class="gd">You are about $6,418 a year short. The extra $484 adds about 7.5% to that. Not urgent, and on our review list.</div></div>
+                  </div>
+                </div>
+                <div class="blk">
+                  <div class="bh"><span class="bi b3"><svg viewBox="0 0 24 24"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/></svg></span><h4>Your options</h4><span class="n">3 of 3 · tap one</span></div>
+                  <div class="opts" id="opts">
+                    <button class="opt" data-msg="Noted - Alex will follow up about moving $40/month to the kids' 529."><span class="oi"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#4f46e5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></span><span class="ot">Move $40/month to the kids' 529</span><span class="od">Offsets the $484 and starts the college fund.</span><span class="go">Choose this →</span></button>
+                    <button class="opt" data-msg="Noted - Alex will fold it into your yearly review."><span class="oi"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#4f46e5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></svg></span><span class="ot">Fold it into the yearly review</span><span class="od">No change now. Alex covers it at your next review.</span><span class="go">Choose this →</span></button>
+                    <button class="opt" data-msg="Noted - Alex will follow up to schedule a call."><span class="oi"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#4f46e5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.5 7.2L4 20l1-4.5A8 8 0 1 1 21 12z"/></svg></span><span class="ot">Talk to Alex</span><span class="od">A short call to walk through your numbers.</span><span class="go">Choose this →</span></button>
+                  </div>
+                  <div class="optmsg" id="optmsg">No action is needed from you. Pick an option only if you want one.</div>
+                </div>
+              </div>
+            </details>
+          </div>
+
+          <div class="fentry">
+            <div class="fdate">Oct 14, 2026</div>
+            <div class="small" role="button" tabindex="0" aria-expanded="false">
+              <div class="sh1"><span class="e"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#ec4899" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16v-7H4z"/><path d="M4 16c3 2 5-2 8 0s5-2 8 0"/><path d="M12 13V8"/><path d="M12 4c1 1.5 1 2.5 0 3-1-.5-1-1.5 0-3z"/></svg></span>Happy birthday, Samantha!<span class="tg">Note · Alex</span></div>
+              <div class="pv">Wishing you a great year ahead. Ethan's start date is getting close...</div>
+              <div class="sbody">Wishing you a wonderful birthday. I hope you get a proper day off. Ethan's college start is getting close, and I am happy with how the plan is holding up. Talk soon.<br>Alex</div>
+            </div>
+          </div>
+
+          <div class="fentry">
+            <div class="fdate">Sep 9, 2026</div>
+            <div class="small" role="button" tabindex="0" aria-expanded="false">
+              <div class="sh1"><span class="e"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#1f8a5b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg></span>Quarterly check-in: plan on track<span class="tg">Check-in</span></div>
+              <div class="pv">Savings and retirement on pace. One item open: 529 contributions.</div>
+              <div class="sbody">Your retirement savings and employer matches are on pace. The one open item is the 529 plans: you have $0 in them today, and we will pick it up at the yearly review.<br>Alex</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rbanner">✓&nbsp; Reviewed by your advisor</div>
+        <span class="backlink" id="backSummary">← Back to plan summary</span>
+      </section>
+    </main>
+  </div>
+</div>
+
+<div id="toast" class="toast" role="alert" style="visibility:hidden">
+  <div class="tav">AM<span class="bell"><svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></span></div>
+  <div class="tt">
+    <div class="t1">Sherpas · now</div>
+    <div class="t2">New message from your advisor</div>
+    <div class="t3">Alex Morgan sent you a new family report</div>
+  </div>
+  <span class="tx" id="toastClose">×</span>
+</div>
+
+
+<script>
+
+var mail=document.getElementById('mail'), plan=document.getElementById('plan');
+var vSum=document.getElementById('view-summary'), vRep=document.getElementById('view-report');
+var navItems=document.querySelectorAll('.snav li');
+var toast=document.getElementById('toast'), bdg=document.getElementById('bdg');
+var toastShown=false, toastTimer=null;
+
+function showToast(){
+  if(toastShown) return;
+  toastShown=true;
+  bdg.style.display='';
+  toast.style.visibility='visible';
+  requestAnimationFrame(function(){ requestAnimationFrame(function(){ toast.classList.add('show'); }); });
+  setTimeout(function(){ hideToast(); }, 9000);
+}
+function hideToast(){
+  toast.classList.remove('show');
+}
+function scheduleToast(){
+  if(toastShown || toastTimer) return;
+  toastTimer=setTimeout(showToast, 3500);
+}
+toast.onclick=function(){ setView('report'); hideToast(); };
+document.getElementById('toastClose').onclick=function(e){ e.stopPropagation(); hideToast(); };
+
+function showPlan(report){
+  mail.classList.add('hidden'); plan.classList.remove('hidden');
+  setView(report?'report':'summary');
+  if(!report) scheduleToast();
+  window.scrollTo(0,0);
+}
+function showMail(){
+  plan.classList.add('hidden'); mail.classList.remove('hidden');
+  window.scrollTo(0,0);
+}
+function setView(v){
+  vSum.classList.toggle('hidden', v!=='summary');
+  vRep.classList.toggle('hidden', v!=='report');
+  navItems.forEach(function(li){
+    li.classList.toggle('on', li.getAttribute('data-view')===v && (v==='report' ? li.id==='navReport' : li.textContent.trim()==='Summary'));
+  });
+  if(v==='report'){ document.getElementById('currentReport').open=true; var b=document.getElementById('bdg'); if(b) b.style.display='none'; }
+  window.scrollTo(0,0);
+}
+document.getElementById('openPlan').onclick=function(){ showPlan(false); };
+document.getElementById('backSummary').onclick=function(){ setView('summary'); };
+navItems.forEach(function(li){
+  li.onclick=function(){ setView(li.getAttribute('data-view')); };
+});
+
+document.querySelectorAll('.opt').forEach(function(o){o.onclick=function(){
+  document.querySelectorAll('.opt').forEach(function(x){x.classList.remove('done');x.classList.add('dim');x.querySelector('.go').textContent='Choose this →'});
+  o.classList.remove('dim');o.classList.add('done');o.querySelector('.go').textContent='✓ Noted - Alex will follow up';
+  document.getElementById('optmsg').textContent='✓ '+o.getAttribute('data-msg');
+};});
+document.querySelectorAll('.small').forEach(function(card){
+  function toggle(){var open=card.classList.toggle('open');card.setAttribute('aria-expanded',String(open));}
+  card.onclick=toggle;
+  card.onkeydown=function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle();}};
+});
+</script>
+</body>
+</html>
